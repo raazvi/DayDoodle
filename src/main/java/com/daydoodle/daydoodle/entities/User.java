@@ -68,15 +68,15 @@ public class User {
         this.dateJoined = dateJoined;
     }
 
-//    @OneToMany(mappedBy="author")
-//    private List<Diary> diaryPages;
-//    public List<Diary> getDiaryPages() {
-//        return diaryPages;
-//    }
-//    public void setDiaryPages(List<Diary> diaryPages) {
-//        this.diaryPages = diaryPages;
-//    }
-//
+    @OneToMany(mappedBy="author")
+    private List<DiaryPage> diary;
+    public List<DiaryPage> getDiaryPages() {
+        return diary;
+    }
+    public void setDiaryPages(List<DiaryPage> diary) {
+        this.diary = this.diary;
+    }
+
 //    @OneToMany(mappedBy = "user")
 //    private List<CalendarEvent> calendarEvents;
 //    public List<CalendarEvent> getCalendarEvents() {

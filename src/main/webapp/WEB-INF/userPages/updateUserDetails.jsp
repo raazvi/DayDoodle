@@ -35,7 +35,7 @@
                     <input type="text" class="form-control" id="location" name="location" placeholder="Enter your location" value="">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="birthdate">Birth Date</label>
+                    <label for="birthdate">Birthday: </label>
                     <input type="date" class="form-control" id="birthdate" name="birthdate" placeholder="Enter your birth date" value="">
                 </div>
             </div>
