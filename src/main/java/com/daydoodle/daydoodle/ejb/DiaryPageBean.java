@@ -61,7 +61,7 @@ public class DiaryPageBean {
     /**
      * Finds all the pages written by a specific user.
      */
-    public List<DiaryPageDto> findPagesByUser(List<DiaryPageDto> allPages, String username){
+    public List<DiaryPageDto> findPagesByUser(String username, List<DiaryPageDto> allPages){
         log.info("\n Entered findPagesByUser method, finding diary pages for user:  "+username+" \n");
         List<DiaryPageDto> listToReturn =new ArrayList<>();
 
@@ -81,7 +81,7 @@ public class DiaryPageBean {
      */
     public DiaryPageDto findPageById(Long pageId, List<DiaryPageDto> allPages) {
         log.info("\n Entered findPageById method, finding diary page with the id:  "+pageId+" \n");
-        DiaryPageDto page= allPages.stream().filter(d -> Objects.equals(d.getEntryId(), pageId)).findFirst().orElse(new DiaryDto());
+        DiaryPageDto page= allPages.stream().filter(d -> Objects.equals(d.getEntryId(), pageId)).findFirst().orElse(new DiaryPageDto());
 
         log.info("\n Exited findPageById method. \n");
         return page;
