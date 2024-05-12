@@ -20,7 +20,14 @@
                 </li>
             </ul>
             <!-- Centered logo with link to home -->
-            <a class="navbar-brand mx-auto" href="${pageContext.request.contextPath}">DayDoodle</a>
+            <c:choose>
+                <c:when test="${empty sessionScope.user}">
+                    <a class="navbar-brand mx-auto" href="${pageContext.request.contextPath}">DayDoodle</a>
+                </c:when>
+                <c:otherwise>
+                    <a class="navbar-brand mx-auto" href="${pageContext.request.contextPath}/Feed">DayDoodle</a>
+                </c:otherwise>
+            </c:choose>
             <!-- Right side menu items -->
             <ul class="navbar-nav flex-fill justify-content-end">
                 <li class="nav-item">

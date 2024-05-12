@@ -56,6 +56,7 @@ public class Register extends HttpServlet {
             log.info("\n User already exists. Exiting Register.doPost method. \n");
             req.setAttribute("username", username);
             req.setAttribute("email", email);
+            req.setAttribute("errorMessage", "Username already exists. Please provide a new username...");
             req.getRequestDispatcher("/WEB-INF/components/forms/register.jsp").forward(req, resp);
         }
     }

@@ -1,82 +1,73 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:pageTemplate pageTitle="Edit Profile">
     <div class="container text-center">
         <div class="row">
-            <h3>Since this is the first time you logged into your account, tell us more about yourself!</h3>
+            <h3>Edit Profile</h3>
         </div>
 
-        <form method="POST" action="${pageContext.request.contextPath}/UpdateUserDetails" enctype="multipart/form-data">
+        <form method="POST" action="${pageContext.request.contextPath}/EditProfile" enctype="multipart/form-data">
             <div class="row">
                 <!-- Profile Picture Field -->
                 <div class="col-md-6 mb-3">
-                    <label for="profilePicture">Profile Picture</label>
-                    <input type="file" class="form-control" id="profilePicture" name="profilePicture">
+                    <label for="profilePicture">Profile Picture</label><br>
+                    <img src="data:image/jpeg;base64,${user.profilePicture}" alt="Profile Picture" width="150" height="150"><br>
+                    <input type="file" id="profilePicture" name="profilePicture">
                 </div>
                 <!-- End of Profile Picture Field -->
                 <div class="col-md-6 mb-3">
                     <label for="firstname">First Name</label>
-                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter your first name" value="">
+                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" value="${user.firstName}">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="lastname">Last Name</label>
-                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter your last name" value="">
+                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name" value="${user.lastName}">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="nickname">Nickname</label>
-                    <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Enter your nickname" value="">
+                    <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Nickname" value="${user.nickname}">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="location">Location</label>
-                    <input type="text" class="form-control" id="location" name="location" placeholder="Enter your location" value="">
+                    <input type="text" class="form-control" id="location" name="location" placeholder="Location" value="${user.location}">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="birthdate">Birth Date</label>
-                    <input type="date" class="form-control" id="birthdate" name="birthdate" placeholder="Enter your birth date" value="">
+                    <input type="date" class="form-control" id="birthdate" name="birthdate" value="${user.birthDate}">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="zodiacSign">Zodiac Sign</label>
                     <select class="form-control" id="zodiacSign" name="zodiacSign">
-                        <option value="Aries">Aries</option>
-                        <option value="Taurus">Taurus</option>
-                        <option value="Gemini">Gemini</option>
-                        <option value="Cancer">Cancer</option>
-                        <option value="Leo">Leo</option>
-                        <option value="Virgo">Virgo</option>
-                        <option value="Libra">Libra</option>
-                        <option value="Scorpio">Scorpio</option>
-                        <option value="Sagittarius">Sagittarius</option>
-                        <option value="Capricorn">Capricorn</option>
-                        <option value="Aquarius">Aquarius</option>
-                        <option value="Pisces">Pisces</option>
+                        <c:forEach var="sign" items="${['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces']}">
+                            <option value="${sign}" ${user.zodiacSign eq sign ? 'selected' : ''}>${sign}</option>
+                        </c:forEach>
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="pronouns">Pronouns</label>
-                    <input type="text" class="form-control" id="pronouns" name="pronouns" placeholder="Enter your pronouns" value="">
+                    <input type="text" class="form-control" id="pronouns" name="pronouns" placeholder="Pronouns" value="${user.pronouns}">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="description">About yourself</label>
-                    <input type="text" class="form-control" id="description" name="description" placeholder="Tell us about yourself" value="">
+                    <label for="description">About Yourself</label>
+                    <textarea class="form-control" id="description" name="description" placeholder="Tell us about yourself">${user.description}</textarea>
                 </div>
             </div>
             <!-- Hidden Field for Username -->
-            <input type="hidden" name="username" value="${sessionScope.user.username}">
+            <input type="hidden" name="username" value="${user.username}">
             <input type="hidden" id="imageFormat" name="imageFormat">
+
             <!-- Submit Button -->
-            <input type="submit" value="Done" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary">Submit Changes</button>
         </form>
-
-        <h2> P.S.: You'll be able to edit these details later by clicking on your profile, so don't stress out!</h2>
-
     </div>
 </t:pageTemplate>
 

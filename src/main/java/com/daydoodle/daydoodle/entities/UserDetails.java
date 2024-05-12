@@ -37,10 +37,6 @@ public class UserDetails {
     private String pronouns;
 
     @Basic
-    @Lob
-    private byte[] profilePicture;
-
-    @Basic
     @Enumerated(EnumType.STRING)
     private ZodiacSign zodiacSign;
 
@@ -59,90 +55,72 @@ public class UserDetails {
         Pisces
     }
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Picture profilePicture;
+
     public String getUsername() {
         return username;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }
-
     public ZodiacSign getZodiacSign() {
         return zodiacSign;
     }
-
     public void setZodiacSign(ZodiacSign zodiacSign) {
         this.zodiacSign = zodiacSign;
     }
-
-    public byte[] getProfilePicture() {
+    public Picture getProfilePicture() {
         return profilePicture;
     }
-
-    public void setProfilePicture(byte[] profilePicture) {
+    public void setProfilePicture(Picture profilePicture) {
         this.profilePicture = profilePicture;
     }
-
     public String getPronouns() {
         return pronouns;
     }
-
     public void setPronouns(String pronouns) {
         this.pronouns = pronouns;
     }
-
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
-
     public String getLocation() {
         return location;
     }
-
     public void setLocation(String location) {
         this.location = location;
     }
-
     public LocalDate getBirthDate() {
         return birthDate;
     }
-
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
-
     public String getNickname() {
         return nickname;
     }
-
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
-
     public String getLastName() {
         return lastName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
     public String getFirstName() {
         return firstName;
     }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
     public User getUser() {
         return user;
     }
-
     public void setUser(User user) {
         this.user = user;
     }

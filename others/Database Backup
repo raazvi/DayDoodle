@@ -1,7 +1,7 @@
 #User Table
 INSERT INTO `DayDoodle`.`USER` (`USERNAME`, `DATEJOINED`, `EMAIL`, `FIRSTLOGIN`, `PASSWORD`, `ROLE`) VALUES ('admin', '2023-10-20', 'admin@admin.com', '0', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin');
-INSERT INTO `DayDoodle`.`USER` (`USERNAME`, `DATEJOINED`, `EMAIL`, `FIRSTLOGIN`, `PASSWORD`, `ROLE`) VALUES ('user', '2023-10-20', 'user@user.com', '0', '04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb', 'user');
+INSERT INTO `DayDoodle`.`USER` (`USERNAME`, `DATEJOINED`, `EMAIL`, `FIRSTLOGIN`, `PASSWORD`, `ROLE`) VALUES ('user', '2024-01-03', 'user@user.com', '0', '04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb', 'user');
 
 #User Details
-INSERT INTO `DayDoodle`.`USERDETAILS` (`BIRTHDATE`, `DESCRIPTION`, `FIRSTNAME`, `LASTNAME`, `LOCATION`, `NICKNAME`, `PRONOUNS`, `username`) VALUES ('1998-10-18', 'I am a dummy user, used for testing!', 'User', 'The User', 'Userland', 'Us', 'use/used', 'user');
-INSERT INTO `DayDoodle`.`USERDETAILS` (`BIRTHDATE`, `DESCRIPTION`, `FIRSTNAME`, `LASTNAME`, `LOCATION`, `NICKNAME`, `username`) VALUES ('2000-08-03', 'I am the admin of this app, taking care of everything', 'Admin', 'The Admin', 'Adminland', 'Ad', 'admin');
+INSERT INTO `DayDoodle`.`USERDETAILS` (`BIRTHDATE`, `DESCRIPTION`, `FIRSTNAME`, `LASTNAME`, `LOCATION`, `NICKNAME`, `PRONOUNS`, `username`) VALUES ('2001-08-14', 'I am the admin', 'Admin', 'The Admin', 'Unknown', 'Ad', 'he/him/his', 'admin');
+INSERT INTO `DayDoodle`.`USERDETAILS` (`BIRTHDATE`, `DESCRIPTION`, `FIRSTNAME`, `LASTNAME`, `LOCATION`, `NICKNAME`, `PRONOUNS`, `username`) VALUES ('2003-02-17', 'I am a user, you can use this account for testing.', 'User', 'The User', 'Unknown', 'Ussss', 'use/used', 'user');

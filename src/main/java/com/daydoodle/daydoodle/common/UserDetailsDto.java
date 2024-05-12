@@ -1,5 +1,6 @@
 package com.daydoodle.daydoodle.common;
 
+import com.daydoodle.daydoodle.entities.Picture;
 import com.daydoodle.daydoodle.entities.UserDetails;
 
 import java.time.LocalDate;
@@ -14,10 +15,10 @@ public class UserDetailsDto {
     String location;
     String description;
     String pronouns;
-    byte[] profilePicture;
+    Picture profilePicture;
     UserDetails.ZodiacSign zodiacSign;
 
-    public UserDetailsDto(String username, String firstName, String lastName, String nickname, String description, String pronouns, String location, LocalDate birthDate, byte[] profilePicture, UserDetails.ZodiacSign zodiacSign) {
+    public UserDetailsDto(String username, String firstName, String lastName, String nickname, String description, String pronouns, String location, LocalDate birthDate, Picture profilePicture, UserDetails.ZodiacSign zodiacSign) {
         this.username = username;
         this.zodiacSign = zodiacSign;
         this.profilePicture = profilePicture;
@@ -29,46 +30,36 @@ public class UserDetailsDto {
         this.lastName = lastName;
         this.firstName = firstName;
     }
-
     public UserDetailsDto() {
     }
 
     public String getUsername() {
         return username;
     }
-
     public UserDetails.ZodiacSign getZodiacSign() {
         return zodiacSign;
     }
-
-    public byte[] getProfilePicture() {
+    public Picture getProfilePicture() {
         return profilePicture;
     }
-
     public String getPronouns() {
         return pronouns;
     }
-
     public String getDescription() {
         return description;
     }
-
     public String getLocation() {
         return location;
     }
-
     public LocalDate getBirthDate() {
         return birthDate;
     }
-
     public String getNickname() {
         return nickname;
     }
-
     public String getLastName() {
         return lastName;
     }
-
     public String getFirstName() {
         return firstName;
     }
