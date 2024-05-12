@@ -2,6 +2,7 @@ package com.daydoodle.daydoodle.servlets;
 
 import java.io.IOException;
 
+import com.daydoodle.daydoodle.ejb.AuthenticationBean;
 import com.daydoodle.daydoodle.ejb.UserBean;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
@@ -23,6 +24,8 @@ public class Register extends HttpServlet {
 
     @Inject
     UserBean userBean;
+    @Inject
+    AuthenticationBean authenticationBean;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -43,31 +46,17 @@ public class Register extends HttpServlet {
         String username = req.getParameter("username");
 
         List<String> existingUsernames = userBean.getExistingUsernames();
+        password=authenticationBean.encryptPassword(password);
 
-        if (existingUsernames.contains(username)) {
-            req.setAttribute("email", email);
-            req.setAttribute("password", password);
+        if(!existingUsernames.contains(username)) {
+            userBean.createUser(username, email, password);
+            log.info("\n Created user " + username + " successfully. Exiting Register.doPost method. \n");
+            resp.sendRedirect(req.getContextPath() + "/Login");
+        }else{
+            log.info("\n User already exists. Exiting Register.doPost method. \n");
             req.setAttribute("username", username);
-            req.setAttribute("errorMessage", "Username is taken. Please provide a new username!");
-            log.info("\n Exited Register.doPost method ---> username already exists \n");
+            req.setAttribute("email", email);
             req.getRequestDispatcher("/WEB-INF/components/forms/register.jsp").forward(req, resp);
-        } else {
-            try {
-                MessageDigest digest = MessageDigest.getInstance("SHA-256");
-                byte[] hashedPasswordBytes = digest.digest(password.getBytes());
-                String hashedPassword = Base64.getEncoder().encodeToString(hashedPasswordBytes);
-                userBean.createUser(username, email, hashedPassword);
-                log.info("\n Exited Register.doPost method, redirecting to login page \n");
-                req.getRequestDispatcher("/WEB-INF/components/forms/login.jsp").forward(req, resp);
-            } catch (NoSuchAlgorithmException e) {
-                log.severe("Error hashing password: " + e.getMessage());
-                req.setAttribute("email", email);
-                req.setAttribute("password", password);
-                req.setAttribute("username", username);
-                req.setAttribute("errorMessage", "Error creating account. Please refresh the page and try again.");
-                log.info("\n Exited Register.doPost method with an error on the hashing algorithm \n");
-                req.getRequestDispatcher("/WEB-INF/components/forms/register.jsp").forward(req, resp);
-            }
         }
     }
 }

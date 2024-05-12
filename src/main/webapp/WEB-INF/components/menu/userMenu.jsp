@@ -18,7 +18,7 @@
             <!-- Right side menu items -->
             <ul class="navbar-nav flex-fill justify-content-end">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Profile"> Profile </a>
+                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Profile"> ${sessionScope.user.username} </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Friends"> Friends </a>

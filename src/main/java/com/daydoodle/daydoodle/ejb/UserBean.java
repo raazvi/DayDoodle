@@ -56,6 +56,9 @@ public class UserBean {
         return listToReturn;
     }
 
+    /**
+     * Finds the details of a user based on their username.
+     */
     public UserDto findUserByUsername(String username, List<UserDto> userList){
         log.info("\n Entered findUserByUsername method with the username: "+ username +" \n");
         UserDto foundUser=null;
@@ -140,6 +143,7 @@ public class UserBean {
         user.setEmail(email);
         user.setDateJoined(LocalDate.now());
         user.setFirstLogin(true);
+        user.setRole(User.Role.user);
 //        user.setCalendars(new ArrayList<Calendar>());
 //        user.setPosts(new ArrayList<Post>());
 //        user.setCalendarEvents(new ArrayList<CalendarEvent>());
@@ -150,7 +154,6 @@ public class UserBean {
         UserDetails ud=new UserDetails();
         ud.setUser(user);
         entityManager.persist(ud);
-
     }
 
     /**

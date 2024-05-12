@@ -9,6 +9,7 @@ public class UserDto {
     String password;
     LocalDate dateJoined;
     boolean firstLogin;
+    String role;
 
     public UserDto(String username, String email, String password) {
         this.username = username;
@@ -23,6 +24,14 @@ public class UserDto {
     }
     public UserDto(String username, String email, String password, LocalDate dateJoined,  boolean firstLogin) {
         this.username = username;
+        this.firstLogin = firstLogin;
+        this.dateJoined = dateJoined;
+        this.password = password;
+        this.email = email;
+    }
+    public UserDto(String username, String role, boolean firstLogin, LocalDate dateJoined, String password, String email) {
+        this.username = username;
+        this.role = role;
         this.firstLogin = firstLogin;
         this.dateJoined = dateJoined;
         this.password = password;
@@ -45,4 +54,5 @@ public class UserDto {
     public boolean isFirstLogin() {
         return firstLogin;
     }
+    public String getRole() {return role;}
 }
