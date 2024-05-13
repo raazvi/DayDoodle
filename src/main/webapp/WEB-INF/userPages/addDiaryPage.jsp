@@ -4,11 +4,14 @@
 <t:pageTemplate pageTitle="Add a page to your diary">
     <h1>Welcome to my app!</h1>
     <form action="${pageContext.request.contextPath}/AddDiaryPage" method="post">
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date"><br><br>
+
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" required><br><br>
 
         <label for="moodCategory">How did you feel:</label>
-        <select id="moodCategory" name="moodCategory" onchange="populateMoodValues(this)">
+        <select id="moodCategory" name="moodCategory" onchange="populateMoodValues(this)" required>
             <option value="" selected disabled>Select a Mood Category</option>
             <option value="Happy">Happy</option>
             <option value="Sad">Sad</option>
@@ -25,7 +28,7 @@
         </select><br><br>
 
         <label for="moreDetails">Fill in with more details about your day:</label><br>
-        <textarea id="moreDetails" name="moreDetails" rows="4" cols="50"></textarea><br><br>
+        <textarea id="moreDetails" name="moreDetails" rows="4" cols="50" required></textarea><br><br>
 
         <input type="submit" value="Submit">
     </form>

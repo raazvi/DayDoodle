@@ -99,4 +99,13 @@ public class CalendarEventBean {
         log.info("\n Exited addEventWithUserActivity method. \n");
         entityManager.persist(newEvent);
     }
+
+    public void deleteEvent(String username, Long eventIdLong) {
+        log.info("\n Entered deleteEvent method. \n");
+        User user=entityManager.find(User.class,username);
+        CalendarEvent calendarEvent=entityManager.find(CalendarEvent.class,eventIdLong);
+        user.getCalendarEvents().remove(calendarEvent);
+        entityManager.remove(calendarEvent);
+        log.info("\n Exited deleteEvent method. \n");
+    }
 }

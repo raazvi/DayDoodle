@@ -13,7 +13,6 @@
             <div class="col-md-4 offset-md-4">
                 <c:if test="${not empty user.profilePicture}">
                     <img src="data:image/<c:out value="${user.profilePicture.imageFormat}" />;base64,${java.util.Base64.getEncoder().encodeToString(user.profilePicture.imageData)}" alt="Profile Picture" width="200" height="200">
-
                 </c:if>
                 <c:if test="${empty user.profilePicture}">
                     <img src="default-profile-picture.jpg" alt="Default Profile Picture" width="200" height="200">
@@ -24,11 +23,37 @@
         <!-- Basic Information -->
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <p>Full name: ${user.firstName} ${user.lastName} (Your nickname is: ${user.nickname})</p>
-                <p>Birthday: ${user.birthDate} (There are ${daysTilBirthday} days left until your birthday)</p>
-                <p>Zodiac Sign: ${user.zodiacSign}</p>
-                <p>Location: ${user.location}</p>
-                <p>About yourself: ${user.description}</p>
+                <c:if test="${not empty user.firstName}">
+                    <p>Full name: ${user.firstName} ${user.lastName} (Your nickname is: ${user.nickname})</p>
+                </c:if>
+                <c:set var="currentDate" value="${java.time.LocalDate.now()}" />
+                <c:choose>
+                    <c:when test="${not empty user.birthDate}">
+                        <c:set var="birthdayMonth" value="${user.birthDate.month}" />
+                        <c:choose>
+                            <c:when test="${not empty birthdayMonth}">
+                                <c:if test="${user.birthDate ne currentDate}">
+                                    <p>Birthday: ${user.birthDate} (There are ${daysTilBirthday} days left until your birthday)</p>
+                                </c:if>
+                            </c:when>
+                            <c:otherwise>
+                                <p>Birthday: Not specified</p>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:when>
+                    <c:otherwise>
+                        <p>Birthday: ${currentDate}</p>
+                    </c:otherwise>
+                </c:choose>
+                <c:if test="${not empty user.zodiacSign}">
+                    <p>Zodiac Sign: ${user.zodiacSign}</p>
+                </c:if>
+                <c:if test="${not empty user.location}">
+                    <p>Location: ${user.location}</p>
+                </c:if>
+                <c:if test="${not empty user.description}">
+                    <p>About yourself: ${user.description}</p>
+                </c:if>
             </div>
         </div>
 
@@ -46,7 +71,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- User's activities and Insert activity form -->
     <h4>Add New Custom Activity</h4>
@@ -80,6 +104,4 @@
             </div>
         </c:forEach>
     </div>
-
-
 </t:pageTemplate>

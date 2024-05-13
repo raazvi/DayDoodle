@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="j" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <t:generalTemplate pageTitle="Register">
@@ -21,6 +21,10 @@
         <div>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" value="${empty password ? '' : password}" required>
+        </div>
+        <div>
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
         </div>
         <button type="submit">Register</button>
     </form>

@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import java.time.LocalDate;
 import java.util.logging.Logger;
 
 @WebServlet(name = "AddDiaryPage", value = "/AddDiaryPage")
@@ -41,14 +42,23 @@ public class AddDiaryPage extends HttpServlet {
         String moodCategory = req.getParameter("moodCategory");
         String moodValue = req.getParameter("moodValue");
         String entryText = req.getParameter("moreDetails");
+        String dateString = req.getParameter("date");
+
+        LocalDate date;
+        if (dateString == null || dateString.isEmpty()) {
+            date = LocalDate.now();
+        } else {
+            date = LocalDate.parse(dateString);
+        }
 
         // Combine moodCategory and moodValue
         String mood = moodCategory + "," + moodValue;
 
-        diaryPageBean.createDiaryPage(title,entryText,user.getUsername(),mood);
+        diaryPageBean.createDiaryPage(title, entryText, user.getUsername(), mood, date);
 
         resp.sendRedirect(req.getContextPath() + "/Diary");
 
         log.info("\n Exited AddDiaryPage.doPost \n");
     }
+
 }

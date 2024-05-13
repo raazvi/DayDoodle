@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="title">Title:</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="" value="The name of the calendar...">
+                <input type="text" class="form-control" id="title" name="title" placeholder="The name of the calendar..." value="">
             </div>
         </div>
         <div class="row">

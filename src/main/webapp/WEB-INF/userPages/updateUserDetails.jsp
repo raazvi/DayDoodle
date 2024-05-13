@@ -15,14 +15,14 @@
                 </div>
                 <!-- End of Profile Picture Field -->
                 <div class="col-md-6 mb-3">
-                    <label for="firstname">First Name</label>
-                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter your first name" value="">
+                    <label for="firstname">*First Name</label>
+                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter your first name" value="" required>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="lastname">Last Name</label>
-                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter your last name" value="">
+                    <label for="lastname">*Last Name</label>
+                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter your last name" value="" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="nickname">Nickname</label>
@@ -35,27 +35,15 @@
                     <input type="text" class="form-control" id="location" name="location" placeholder="Enter your location" value="">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="birthdate">Birthday: </label>
-                    <input type="date" class="form-control" id="birthdate" name="birthdate" placeholder="Enter your birth date" value="">
+                    <label for="birthdate">*Birthday: </label>
+                    <input type="date" class="form-control" id="birthdate" name="birthdate" placeholder="Enter your birth date" value="" required>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 mb-3">
+                    <p> The zodiac sign is filled automatically based on your birthday!</p>
                     <label for="zodiacSign">Zodiac Sign</label>
-                    <select class="form-control" id="zodiacSign" name="zodiacSign">
-                        <option value="Aries">Aries</option>
-                        <option value="Taurus">Taurus</option>
-                        <option value="Gemini">Gemini</option>
-                        <option value="Cancer">Cancer</option>
-                        <option value="Leo">Leo</option>
-                        <option value="Virgo">Virgo</option>
-                        <option value="Libra">Libra</option>
-                        <option value="Scorpio">Scorpio</option>
-                        <option value="Sagittarius">Sagittarius</option>
-                        <option value="Capricorn">Capricorn</option>
-                        <option value="Aquarius">Aquarius</option>
-                        <option value="Pisces">Pisces</option>
-                    </select>
+                    <input type="text" class="form-control" id="zodiacSign" name="zodiacSign" placeholder="Zodiac Sign" disabled>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="pronouns">Pronouns</label>
@@ -75,27 +63,33 @@
             <input type="submit" value="Done" class="btn btn-primary">
         </form>
 
+        <p> Even though not all fields are mandatory, you have to at least let us know your full name and your birthday (those fields are marked with a star :D )</p>
         <h2> P.S.: You'll be able to edit these details later by clicking on your profile, so don't stress out!</h2>
 
     </div>
 </t:pageTemplate>
 
 <script>
-    // Function to extract image format and set the hidden input value
-    function setImageFormat() {
-        // Get the file input element
-        var input = document.getElementById('profilePicture');
-        // Check if a file is selected
-        if (input.files && input.files[0]) {
-            // Get the file name
-            var fileName = input.files[0].name;
-            // Extract the file extension to determine the format
-            var imageFormat = fileName.split('.').pop().toLowerCase();
-            // Set the value of the hidden input
-            document.getElementById('imageFormat').value = imageFormat;
+    function setZodiacSign() {
+        var birthdateInput = document.getElementById('birthdate');
+        var zodiacSignInput = document.getElementById('zodiacSign');
+
+        if (birthdateInput.value) {
+            var birthdate = new Date(birthdateInput.value);
+            var month = birthdate.getMonth() + 1;
+            var day = birthdate.getDate();
+
+            var zodiacSigns = ["Capricorn", "Aquarius", "Pisces", "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius"];
+            var endDates = [20, 19, 20, 20, 21, 21, 22, 23, 23, 23, 22, 21];
+
+            var zodiacIndex = month - (day < endDates[month - 1] ? 1 : 0);
+            if (zodiacIndex < 0) {
+                zodiacIndex = 11;
+            }
+
+            zodiacSignInput.value = zodiacSigns[zodiacIndex];
         }
     }
 
-    // Add an event listener to the file input to call setImageFormat function when a file is selected
-    document.getElementById('profilePicture').addEventListener('change', setImageFormat);
+    document.getElementById('birthdate').addEventListener('change', setZodiacSign);
 </script>

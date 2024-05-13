@@ -15,11 +15,13 @@
     <div class="container mt-3">
         <div class="row mt-3">
             <div class="col mt-3">
-                <a href="${pageContext.request.contextPath}/AddEvent?calendarId=${calendar.id}">Add an event to your calendar</a>
+                <a href="${pageContext.request.contextPath}/AddEvent?calendarId=${calendar.id}" data-toggle="tooltip" data-placement="bottom" title="Click on the button to add a new event to the current calendar">Add an event to your calendar</a>
             </div>
+            <!--
             <div class="col mt-3">
                 <a>Button Add User</a>
             </div>
+            -->
         </div>
         <div class="row">
             <div class="col">
@@ -65,6 +67,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
+    // Initialize tooltips
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
     document.addEventListener('DOMContentLoaded', function() {
         const calendarEl = document.getElementById('calendar');
 

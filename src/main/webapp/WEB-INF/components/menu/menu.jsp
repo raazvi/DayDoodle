@@ -19,6 +19,10 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/ViewCalendars"> Calendar </a>
                 </li>
+                <!-- Added Friends link -->
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/ViewFriends"> Friends </a>
+                </li>
             </ul>
             <!-- Centered logo with link to home -->
             <c:choose>
@@ -34,7 +38,6 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Profile"> ${sessionScope.user.username} </a>
                 </li>
-                <!-- Removed Friends link -->
                 <!-- Dropdown for Admin Settings (conditional) -->
                 <c:if test="${userRole eq 'admin'}">
                     <li class="nav-item dropdown">

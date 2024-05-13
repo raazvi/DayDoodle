@@ -90,14 +90,14 @@ public class DiaryPageBean {
     /**
      * Creates a new diary page.
      */
-    public void createDiaryPage(String title, String entryText, String authorUsername, String mood) {
+    public void createDiaryPage(String title, String entryText, String authorUsername, String mood, LocalDate date) {
 
         log.info("\n Entered createDiaryPage method. \n");
 
         DiaryPage newDiaryPage=new DiaryPage();
         newDiaryPage.setTitle(title);
         newDiaryPage.setEntryText(entryText);
-        newDiaryPage.setEntryDate(LocalDate.now());
+        newDiaryPage.setEntryDate(date);
         newDiaryPage.setMood(mood);
 
         User author=entityManager.find(User.class,authorUsername);

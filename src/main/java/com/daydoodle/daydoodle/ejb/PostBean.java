@@ -1,5 +1,6 @@
 package com.daydoodle.daydoodle.ejb;
 
+import com.daydoodle.daydoodle.common.FriendshipDto;
 import com.daydoodle.daydoodle.common.PostDto;
 import com.daydoodle.daydoodle.entities.Activity;
 import com.daydoodle.daydoodle.entities.CustomActivity;
@@ -109,4 +110,16 @@ public class PostBean {
         log.info("\n Exited createPostWithCustomActivity method. \n");
     }
 
+    public List<PostDto> findFriendsPosts(List<String> userFriends, List<PostDto> allPosts) {
+        log.info("\n Entered findFriendsPosts method for the user: "+userFriends.size()+" \n");
+        List<PostDto> friendsPosts=new ArrayList<>();
+        for(PostDto postDto:allPosts){
+            if(userFriends.contains(postDto.getAuthor().getUsername())){
+                friendsPosts.add(postDto);
+            }
+        }
+        log.info("\n Exited findFriendsPosts method. \n");
+        return friendsPosts;
+
+    }
 }

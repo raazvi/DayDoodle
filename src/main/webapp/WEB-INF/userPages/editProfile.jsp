@@ -43,8 +43,9 @@
             </div>
             <div class="row">
                 <div class="col-md-6 mb-3">
+                    <p> The zodiac sign is filled automatically based on your birthday!</p>
                     <label for="zodiacSign">Zodiac Sign</label>
-                    <select class="form-control" id="zodiacSign" name="zodiacSign">
+                    <select class="form-control" id="zodiacSign" name="zodiacSign" disabled>
                         <c:forEach var="sign" items="${['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces']}">
                             <option value="${sign}" ${user.zodiacSign eq sign ? 'selected' : ''}>${sign}</option>
                         </c:forEach>
@@ -87,6 +88,32 @@
         }
     }
 
-    // Add an event listener to the file input to call setImageFormat function when a file is selected
+    // Function to calculate and set the zodiac sign based on the birth date
+    function setZodiacSign() {
+        var birthdateInput = document.getElementById('birthdate');
+        var zodiacSignInput = document.getElementById('zodiacSign');
+
+        if (birthdateInput.value) {
+            var birthdate = new Date(birthdateInput.value);
+            var month = birthdate.getMonth() + 1;
+            var day = birthdate.getDate();
+
+            var zodiacSigns = ["Capricorn", "Aquarius", "Pisces", "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius"];
+            var endDates = [20, 19, 20, 20, 21, 21, 22, 23, 23, 23, 22, 21];
+
+            var zodiacIndex = month - (day < endDates[month - 1] ? 1 : 0);
+            if (zodiacIndex < 0) {
+                zodiacIndex = 11;
+            }
+
+            zodiacSignInput.value = zodiacSigns[zodiacIndex];
+        }
+    }
+
+    // Add event listeners
     document.getElementById('profilePicture').addEventListener('change', setImageFormat);
+    document.getElementById('birthdate').addEventListener('change', setZodiacSign);
+
+    // Initial call to set the zodiac sign if the birth date is already filled
+    setZodiacSign();
 </script>

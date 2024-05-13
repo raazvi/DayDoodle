@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import java.util.Objects;
 import java.util.logging.Logger;
 
 @WebServlet(name = "AddCustomActivity", value = "/AddCustomActivity")
@@ -29,9 +30,27 @@ public class AddCustomActivity extends HttpServlet {
         String description = req.getParameter("description");
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
+        String page=req.getParameter("page");
+        String calendarId=req.getParameter("calendarId");
+        Long calendarIdLong=0L;
+        if(calendarId!=null) {
+            calendarIdLong=Long.parseLong(calendarId);
+        }
+
 
         customActivityBean.addCustomActivity(user.getUsername(), name, description);
-        log.info("\n Exited AddCustomActivity.doPost \n");
-        resp.sendRedirect(req.getContextPath() + "/Profile");
+
+        if(Objects.equals(page, "addPost")){
+            log.info("\n Exited AddCustomActivity.doPost --> AddPost \n");
+            resp.sendRedirect(req.getContextPath() + "/AddPost");
+        }else if(Objects.equals(page, "addEvent")){
+            log.info("\n Exited AddCustomActivity.doPost --> AddEvent \n");
+            resp.sendRedirect(req.getContextPath() + "/AddEvent?calendarId="+calendarIdLong);
+        }else{
+            log.info("\n Exited AddCustomActivity.doPost --> Profile \n");
+            resp.sendRedirect(req.getContextPath() + "/Profile");
+        }
+
+
     }
 }

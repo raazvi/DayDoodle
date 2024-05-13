@@ -44,9 +44,18 @@ public class Register extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String username = req.getParameter("username");
+        String confirmPassword = req.getParameter("confirmPassword");
 
         List<String> existingUsernames = userBean.getExistingUsernames();
-        password=authenticationBean.encryptPassword(password);
+        if(password.equals(confirmPassword)) {
+            password=authenticationBean.encryptPassword(password);
+        } else{
+            log.info("\n Password mismatch! Exiting Register.doPost method. \n");
+            req.setAttribute("username", username);
+            req.setAttribute("email", email);
+            req.setAttribute("errorMessage", "Password mismatch, please make sure fill in the same password in both password fields.");
+            req.getRequestDispatcher("/WEB-INF/components/forms/register.jsp").forward(req, resp);
+        }
 
         if(!existingUsernames.contains(username)) {
             userBean.createUser(username, email, password);

@@ -164,4 +164,26 @@ public class UserBean {
         user.setFirstLogin(false);
         log.info("\n Exited setFirstLoginFalse method. \n");
     }
+
+    /**
+     * Finds users whose usernames contain the specified keyword.
+     * @param keyword The keyword to search for in usernames.
+     * @return A list of usernames of users whose usernames contain the keyword.
+     */
+    public List<String> findUsersByKeyword(String keyword) {
+        log.info("\n Entered findUsersByKeyword method with keyword: " + keyword + " \n");
+
+        List<UserDto> allUsers = findAllUsers();
+        List<String> matchingUsernames = new ArrayList<>();
+
+        for (UserDto user : allUsers) {
+            if (user.getUsername().toLowerCase().contains(keyword.toLowerCase())) {
+                matchingUsernames.add(user.getUsername());
+            }
+        }
+
+        log.info("\n Exited findUsersByKeyword method. \n");
+        return matchingUsernames;
+    }
+
 }
