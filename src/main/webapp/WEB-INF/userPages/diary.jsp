@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:pageTemplate pageTitle="Home">
+<t:pageTemplate pageTitle="Diary">
     <h3>This is your diary.</h3>
     <div>
         <table>

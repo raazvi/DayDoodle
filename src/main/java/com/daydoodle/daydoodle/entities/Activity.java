@@ -2,6 +2,8 @@ package com.daydoodle.daydoodle.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Activity {
     @Id
@@ -42,12 +44,12 @@ public class Activity {
         this.activityPicture = activityPicture;
     }
 
-//    @OneToMany(mappedBy = "activity")
-//    private List<CalendarEvent> calendarEvents;
-//    public List<CalendarEvent> getCalendarEvents() {
-//        return calendarEvents;
-//    }
-//    public void setCalendarEvents(List<CalendarEvent> calendarEvents) {
-//        this.calendarEvents = calendarEvents;
-//    }
+    @OneToMany(mappedBy = "activity")
+    private List<CalendarEvent> calendarEvents;
+    public List<CalendarEvent> getCalendarEvents() {
+        return calendarEvents;
+    }
+    public void setCalendarEvents(List<CalendarEvent> calendarEvents) {
+        this.calendarEvents = calendarEvents;
+    }
 }

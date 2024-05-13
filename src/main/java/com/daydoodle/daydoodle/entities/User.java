@@ -77,24 +77,24 @@ public class User {
         this.diary = this.diary;
     }
 
-//    @OneToMany(mappedBy = "user")
-//    private List<CalendarEvent> calendarEvents;
-//    public List<CalendarEvent> getCalendarEvents() {
-//        return calendarEvents;
-//    }
-//    public void setCalendarEvents(List<CalendarEvent> calendarEvents) {
-//        this.calendarEvents = calendarEvents;
-//    }
-//
-//    @ManyToMany
-//    @JoinTable(name = "calendar_user", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "calendarId"))
-//    private List<Calendar> calendars;
-//    public List<Calendar> getCalendars() {
-//        return calendars;
-//    }
-//    public void setCalendars(List<Calendar> calendars) {
-//        this.calendars = calendars;
-//    }
+    @OneToMany(mappedBy = "user")
+    private List<CalendarEvent> calendarEvents;
+    public List<CalendarEvent> getCalendarEvents() {
+        return calendarEvents;
+    }
+    public void setCalendarEvents(List<CalendarEvent> calendarEvents) {
+        this.calendarEvents = calendarEvents;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "calendar_user", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "calendarId"))
+    private List<Calendar> calendars;
+    public List<Calendar> getCalendars() {
+        return calendars;
+    }
+    public void setCalendars(List<Calendar> calendars) {
+        this.calendars = calendars;
+    }
 
     public enum Role {
         admin,

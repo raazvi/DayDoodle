@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:pageTemplate pageTitle="Home">
+<t:pageTemplate pageTitle="Add a page to your diary">
     <h1>Welcome to my app!</h1>
     <form action="${pageContext.request.contextPath}/AddDiaryPage" method="post">
         <label for="title">Title:</label>

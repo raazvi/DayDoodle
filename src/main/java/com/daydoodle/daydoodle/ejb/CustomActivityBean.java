@@ -40,7 +40,6 @@ public class CustomActivityBean {
         }
 
     }
-
     private List<CustomActivityDto> copyCustomActivitiesToDto(List<CustomActivity> userActivities) {
         log.info("\n Entered copyCustomActivitiesToDto method with list size of: "+userActivities.size()+" \n");
         List<CustomActivityDto> listToReturn =new ArrayList<>();
@@ -140,5 +139,27 @@ public class CustomActivityBean {
 
     }
 
+    /**
+     * Deletes a custom activity from the database.
+     */
+    public void deleteActivity(Long id) {
+        log.info("\n Entered deleteActivity method for the id: "+ id +" \n");
+        CustomActivity ca=entityManager.find(CustomActivity.class,id);
+        entityManager.remove(ca);
+        log.info("\n Exited deleteActivity method \n");
+    }
 
+    /**
+     * Edits the details of a custom activity identified by its id.
+     */
+    public void editActivity(Long activityId, String activityName, String activityDescription) {
+
+        log.info("\n Entered editActivity \n");
+        CustomActivity ca=entityManager.find(CustomActivity.class,activityId);
+        ca.setName(activityName);
+        ca.setDescription(activityDescription);
+        entityManager.merge(ca);
+        log.info("\n Exited editActivity method for the id: "+ activityId + " "+  activityName  +" \n");
+
+    }
 }

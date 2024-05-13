@@ -28,13 +28,13 @@
                 <p>Birthday: ${user.birthDate} (There are ${daysTilBirthday} days left until your birthday)</p>
                 <p>Zodiac Sign: ${user.zodiacSign}</p>
                 <p>Location: ${user.location}</p>
+                <p>About yourself: ${user.description}</p>
             </div>
         </div>
 
-        <!-- Description and Edit Links -->
+        <!-- Edit Links -->
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <p>About yourself: ${user.description}</p>
                 <div>
                     <a class="btn btn-secondary" href="${pageContext.request.contextPath}/EditProfile">Edit your profile</a>
                 </div>
@@ -44,4 +44,40 @@
             </div>
         </div>
     </div>
+
+
+    <!-- User's activities and Insert activity form -->
+    <h4>Add New Custom Activity</h4>
+    <p> By filling in the form below, you can add a new custom activity that you define and that you will be able to use across the whole app.</p>
+    <form action="${pageContext.request.contextPath}/AddCustomActivity" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Activity</button>
+    </form>
+
+    <hr>
+
+    <h4>Your Available Activities</h4>
+    <div class="row">
+        <c:forEach var="customActivity" items="${customActivities}">
+            <div class="col-md-2 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">${customActivity.name}</h5>
+                        <p class="card-text">${customActivity.description}</p>
+                        <a href="${pageContext.request.contextPath}/EditCustomActivity?activityId=${customActivity.id}" class="btn btn-primary">Edit</a>
+                        <a href="${pageContext.request.contextPath}/DeleteCustomActivity?activityId=${customActivity.id}" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+
+
 </t:pageTemplate>

@@ -41,6 +41,7 @@
                         <ul class="dropdown-menu" aria-labelledby="adminDropdown">
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Users">Users</a></li>
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Stats">Stats</a></li>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/ManageActivities">Manage Activities</a></li>
                         </ul>
                     </li>
                 </c:if>

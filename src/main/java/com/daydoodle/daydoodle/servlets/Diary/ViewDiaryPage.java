@@ -1,4 +1,4 @@
-package com.daydoodle.daydoodle.servlets;
+package com.daydoodle.daydoodle.servlets.Diary;
 
 import java.io.IOException;
 

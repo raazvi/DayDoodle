@@ -1,9 +1,8 @@
-package com.daydoodle.daydoodle.servlets;
+package com.daydoodle.daydoodle.servlets.Diary;
 
 import java.io.IOException;
 
 import com.daydoodle.daydoodle.ejb.DiaryPageBean;
-import com.daydoodle.daydoodle.entities.DiaryPage;
 import com.daydoodle.daydoodle.entities.User;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;

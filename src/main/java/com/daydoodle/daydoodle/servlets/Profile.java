@@ -3,6 +3,7 @@ package com.daydoodle.daydoodle.servlets;
 import java.io.IOException;
 
 import com.daydoodle.daydoodle.common.UserDetailsDto;
+import com.daydoodle.daydoodle.ejb.CustomActivityBean;
 import com.daydoodle.daydoodle.ejb.UserDetailsBean;
 import com.daydoodle.daydoodle.entities.User;
 import jakarta.inject.Inject;
@@ -25,6 +26,8 @@ public class Profile extends HttpServlet {
 
     @Inject
     UserDetailsBean userDetailsBean;
+    @Inject
+    CustomActivityBean customActivityBean;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -46,6 +49,7 @@ public class Profile extends HttpServlet {
 
         long daysTilBirthday= ChronoUnit.DAYS.between(today,futureBirthday);
 
+        req.setAttribute("customActivities", customActivityBean.findAllCustomActivitiesByUsername(user.getUsername(),customActivityBean.findAllCustomActivities()));
         req.setAttribute("user", thisUser);
         req.setAttribute("daysTilBirthday",daysTilBirthday);
         log.info("\n Exited Profile.doGet, redirecting to user's profile. Username: "+ thisUser.getUsername() +" \n");

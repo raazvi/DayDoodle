@@ -39,7 +39,6 @@ public class ActivityBean {
         }
 
     }
-
     private List<ActivityDto> copyActivitiesToDto(List<Activity> activities) {
         log.info("\n Entered copyActivitiesToDto method with list size of: "+activities.size()+" \n");
         List<ActivityDto> listToReturn =new ArrayList<>();
@@ -74,4 +73,39 @@ public class ActivityBean {
         return activityToReturn;
     }
 
+    /**
+     * Add a new activity to the list of predefined activities
+     */
+    public void addActivity(String name, String description) {
+        log.info("\n Entered addActivity method for the name: "+ name +" \n");
+        Activity activity=new Activity();
+        activity.setName(name);
+        activity.setDescription(description);
+        entityManager.persist(activity);
+        log.info("\n Exited addActivity method \n");
+    }
+
+    /**
+     * Deletes an activity identified by its id.
+     */
+    public void deleteActivity(Long id) {
+
+        log.info("\n Entered deleteActivity method for the id: "+ id +" \n");
+        Activity a =entityManager.find(Activity.class, id);
+        entityManager.remove(a);
+        log.info("\n Exited deleteActivity method \n");
+
+    }
+
+    /**
+     * Edits a certain activity identified by its id.
+     */
+    public void editActivity(Long activityId, String activityName, String activityDescription) {
+        log.info("\n Entered editActivity method for the id: "+ activityId +" \n");
+        Activity activity=entityManager.find(Activity.class, activityId);
+        activity.setName(activityName);
+        activity.setDescription(activityDescription);
+        entityManager.merge(activity);
+        log.info("\n Exited editActivity method \n");
+    }
 }
