@@ -2,6 +2,7 @@ package com.daydoodle.daydoodle.ejb;
 
 import com.daydoodle.daydoodle.common.CalendarDto;
 import com.daydoodle.daydoodle.entities.Calendar;
+import com.daydoodle.daydoodle.entities.CalendarEvent;
 import com.daydoodle.daydoodle.entities.User;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Stateless;
@@ -80,6 +81,7 @@ public class CalendarBean {
         Calendar newCalendar=new Calendar();
         newCalendar.setName(title);
         newCalendar.setDescription(description);
+        newCalendar.setCreatedBy(username);
 
         User user=entityManager.find(User.class,username);
         user.getCalendars().add(newCalendar);
@@ -93,4 +95,29 @@ public class CalendarBean {
 
     }
 
+    /**
+     * Finds all calendars for a specific user.
+     */
+    public List<CalendarDto> findAllCalendarsByUser(String username){
+        log.info("\n Entered findAllCalendarsByUser method \n");
+        List<CalendarDto> allCalendars=findAllCalendars();
+        List<CalendarDto> userCalendars=new ArrayList<>();
+        User user=entityManager.find(User.class,username);
+        for(CalendarDto c: allCalendars){
+            if(c.getUsers().contains(user)){
+                userCalendars.add(c);
+            }
+        }
+        log.info("\n Exited findAllCalendarsByUser method. \n");
+        return userCalendars;
+    }
+
+    public void deleteEventFromCalendar(Long calendarIdLong, Long eventIdLong) {
+        log.info("\n Entered deleteEventFromCalendar method \n");
+        Calendar calendar=entityManager.find(Calendar.class,calendarIdLong);
+        CalendarEvent calendarEvent=entityManager.find(CalendarEvent.class,eventIdLong);
+        calendar.getEvents().remove(calendarEvent);
+        entityManager.merge(calendar);
+        log.info("\n Exited deleteEventFromCalendar method. \n");
+    }
 }

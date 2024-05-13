@@ -3,6 +3,7 @@ package com.daydoodle.daydoodle.ejb;
 import com.daydoodle.daydoodle.common.CalendarEventDto;
 import com.daydoodle.daydoodle.entities.*;
 import jakarta.ejb.EJBException;
+import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+@Stateless
 public class CalendarEventBean {
     private static final Logger log= Logger.getLogger(CalendarEventBean.class.getName());
 
@@ -77,7 +79,7 @@ public class CalendarEventBean {
     /**
      * Adds an event in the calendar with a custom activity.
      */
-    public void addEventWithUserActivity (String title, LocalDateTime startDate, LocalDateTime endDate, String description,String location,String username,Long userActivityId,Long calendarId){
+    public void addEventWithCustomActivity (String title, LocalDateTime startDate, LocalDateTime endDate, String description,String location,String username,Long userActivityId,Long calendarId){
         log.info("\n Entered addEventWithUserActivity method. \n");
 
         CalendarEvent newEvent=new CalendarEvent();

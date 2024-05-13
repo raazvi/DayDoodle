@@ -15,7 +15,10 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Diary"> Diary </a>
                 </li>
-                <!-- Removed Calendar link -->
+                <!-- Added Calendar link -->
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/ViewCalendars"> Calendar </a>
+                </li>
             </ul>
             <!-- Centered logo with link to home -->
             <c:choose>

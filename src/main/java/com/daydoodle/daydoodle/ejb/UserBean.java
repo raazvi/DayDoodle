@@ -1,9 +1,7 @@
 package com.daydoodle.daydoodle.ejb;
 
 import com.daydoodle.daydoodle.common.UserDto;
-import com.daydoodle.daydoodle.entities.DiaryPage;
-import com.daydoodle.daydoodle.entities.User;
-import com.daydoodle.daydoodle.entities.UserDetails;
+import com.daydoodle.daydoodle.entities.*;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -145,9 +143,9 @@ public class UserBean {
         user.setDateJoined(LocalDate.now());
         user.setFirstLogin(true);
         user.setRole(User.Role.user);
-//        user.setCalendars(new ArrayList<Calendar>());
-//        user.setPosts(new ArrayList<Post>());
-//        user.setCalendarEvents(new ArrayList<CalendarEvent>());
+        user.setCalendars(new ArrayList<Calendar>());
+        user.setPosts(new ArrayList<Post>());
+        user.setCalendarEvents(new ArrayList<CalendarEvent>());
         user.setDiaryPages(new ArrayList<DiaryPage>());
         entityManager.persist(user);
 

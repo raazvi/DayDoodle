@@ -19,6 +19,7 @@ public class Calendar {
     private List<CalendarEvent> events;
     @ManyToMany(mappedBy = "calendars")
     private List<User> users;
+    String createdBy;
 
     //Getters and Setters
     public Long getId() {
@@ -51,5 +52,10 @@ public class Calendar {
     public void setUsers(List<User> users) {
         this.users = users;
     }
-
+    public String getCreatedBy() {
+        return createdBy;
+    }
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
 }

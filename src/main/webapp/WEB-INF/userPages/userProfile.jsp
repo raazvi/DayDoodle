@@ -38,9 +38,11 @@
                 <div>
                     <a class="btn btn-secondary" href="${pageContext.request.contextPath}/EditProfile">Edit your profile</a>
                 </div>
+                <!-- TODO Cand fac fr req sa decomentez aici
                 <div>
                     <a class="btn btn-secondary" href="${pageContext.request.contextPath}/ViewFriendRequests?username=${user.username}">Friend Requests</a>
                 </div>
+                -->
             </div>
         </div>
     </div>
