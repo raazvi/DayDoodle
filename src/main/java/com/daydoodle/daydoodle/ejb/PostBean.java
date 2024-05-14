@@ -2,10 +2,8 @@ package com.daydoodle.daydoodle.ejb;
 
 import com.daydoodle.daydoodle.common.FriendshipDto;
 import com.daydoodle.daydoodle.common.PostDto;
-import com.daydoodle.daydoodle.entities.Activity;
-import com.daydoodle.daydoodle.entities.CustomActivity;
-import com.daydoodle.daydoodle.entities.Post;
-import com.daydoodle.daydoodle.entities.User;
+import com.daydoodle.daydoodle.entities.*;
+import com.daydoodle.daydoodle.servlets.Post.PostReact;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -53,10 +51,10 @@ public class PostBean {
 
         for (Post p : posts) {
 
-            if (p.getActivity() == null) {
-                postDtoTemp = new PostDto(p.getId(), p.getDatePosted(), p.getCaption(), p.getAuthor(), p.getCustomActivity());
+            if (p == null) {
+                postDtoTemp = new PostDto(p.getId(), p.getDatePosted(), p.getCaption(), p.getAuthor(), p.getCustomActivity(),p.getComments(),p.getReactions());
             } else {
-                postDtoTemp = new PostDto(p.getId(), p.getDatePosted(), p.getCaption(), p.getAuthor(), p.getActivity());
+                postDtoTemp = new PostDto(p.getId(), p.getDatePosted(), p.getCaption(), p.getAuthor(), p.getActivity(),p.getComments(),p.getReactions());
             }
 
             listToReturn.add(postDtoTemp);
@@ -83,6 +81,9 @@ public class PostBean {
         User author=entityManager.find(User.class,authorUsername);
         author.getPosts().add(newPost);
         newPost.setAuthor(author);
+
+        newPost.setReactions(new ArrayList<PostReaction>());
+        newPost.setComments(new ArrayList<PostComment>());
 
         entityManager.persist(newPost);
 

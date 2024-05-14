@@ -1,4 +1,5 @@
 import com.daydoodle.daydoodle.ejb.UserBean;
+import com.daydoodle.daydoodle.entities.User;
 import jakarta.inject.Inject;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
@@ -8,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,8 +25,16 @@ public class SearchUser extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String keyword = req.getParameter("keyword");
 
-        // Assuming userBean.findUsersByKeyword() returns a list of usernames matching the keyword
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("user");
+
+        //Excludes the current user from the search suggestions
         List<String> suggestions = userBean.findUsersByKeyword(keyword);
+        if(suggestions.size() > 0) {
+            if(suggestions.contains(user.getUsername())) {
+                suggestions.remove(user.getUsername());
+            }
+        }
 
         // Convert suggestions to JSON format
         JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();

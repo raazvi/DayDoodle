@@ -31,6 +31,38 @@
                                         </c:choose>
                                     </p>
                                     <p class="card-text">${post.caption}</p>
+                                    <br>
+                                    <c:set var="likeDisabled" value="false"/>
+                                    <c:set var="starDisabled" value="false"/>
+                                    <c:forEach var="reaction" items="${post.reactions}">
+                                        <c:if test="${reaction.user.username eq user.username}">
+                                            <c:choose>
+                                                <c:when test="${reaction.reactionType eq 'LIKE'}">
+                                                    <c:set var="likeDisabled" value="true"/>
+                                                </c:when>
+                                                <c:when test="${reaction.reactionType eq 'STAR'}">
+                                                    <c:set var="starDisabled" value="true"/>
+                                                </c:when>
+                                            </c:choose>
+                                        </c:if>
+                                    </c:forEach>
+                                    <c:choose>
+                                        <c:when test="${likeDisabled}">
+                                            <button class="btn btn-primary" disabled>Like</button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="${pageContext.request.contextPath}/PostReact?postId=${post.id}&reaction=like" class="btn btn-primary">Like</a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <c:choose>
+                                        <c:when test="${starDisabled}">
+                                            <button class="btn btn-primary" disabled>Star</button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="${pageContext.request.contextPath}/PostReact?postId=${post.id}&reaction=star" class="btn btn-primary">Star</a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <a href="${pageContext.request.contextPath}/PostComment?postId=${post.id}" class="btn btn-primary">Comment</a>
                                 </div>
                             </div>
                         </div>

@@ -1,10 +1,9 @@
 package com.daydoodle.daydoodle.common;
 
-import com.daydoodle.daydoodle.entities.Activity;
-import com.daydoodle.daydoodle.entities.CustomActivity;
-import com.daydoodle.daydoodle.entities.User;
+import com.daydoodle.daydoodle.entities.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class PostDto {
 
@@ -14,6 +13,8 @@ public class PostDto {
     User author;
     Activity activity;
     CustomActivity customActivity;
+    List<PostComment> comments;
+    List<PostReaction> reactions;
 
     public PostDto(Long id, LocalDate datePosted, String caption, User author, Activity activity, CustomActivity customActivity) {
         this.id = id;
@@ -32,19 +33,24 @@ public class PostDto {
     }
     public PostDto() {
     }
-    public PostDto(Long id, LocalDate datePosted, String caption, User author, Activity activity) {
+    public PostDto(Long id, LocalDate datePosted, String caption, User author, Activity activity, List<PostComment> comments, List<PostReaction> reactions) {
         this.id = id;
         this.datePosted = datePosted;
         this.caption = caption;
         this.author = author;
         this.activity = activity;
+        this.customActivity = customActivity;
+        this.comments = comments;
+        this.reactions = reactions;
     }
-    public PostDto(Long id, LocalDate datePosted, String caption, User author, CustomActivity customActivity) {
+    public PostDto(Long id, LocalDate datePosted, String caption, User author, CustomActivity customActivity, List<PostComment> comments, List<PostReaction> reactions) {
         this.id = id;
         this.datePosted = datePosted;
         this.caption = caption;
         this.author = author;
         this.customActivity = customActivity;
+        this.comments = comments;
+        this.reactions = reactions;
     }
 
     public Long getId() {
@@ -64,5 +70,13 @@ public class PostDto {
     }
     public CustomActivity getCustomActivity() {
         return customActivity;
+    }
+
+    public List<PostComment> getComments() {
+        return comments;
+    }
+
+    public List<PostReaction> getReactions() {
+        return reactions;
     }
 }
