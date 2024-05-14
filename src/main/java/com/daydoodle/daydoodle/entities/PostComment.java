@@ -2,6 +2,8 @@ package com.daydoodle.daydoodle.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 public class PostComment {
 
@@ -18,6 +20,8 @@ public class PostComment {
     @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post;
+
+    LocalDateTime postedAt;
 
     public Long getId() {
         return id;
@@ -42,5 +46,11 @@ public class PostComment {
     }
     public void setPost(Post post) {
         this.post = post;
+    }
+    public LocalDateTime getPostedAt() {
+        return postedAt;
+    }
+    public void setPostedAt(LocalDateTime postedAt) {
+        this.postedAt = postedAt;
     }
 }

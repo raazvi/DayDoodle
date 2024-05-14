@@ -123,4 +123,16 @@ public class PostBean {
         return friendsPosts;
 
     }
+
+    public PostDto findPostById(Long postId) {
+
+        List<PostDto> allPosts=findAllPosts();
+        for(PostDto postDto:allPosts){
+            if(postDto.getId().equals(postId)){
+                return postDto;
+            }
+        }
+
+        return null;
+    }
 }

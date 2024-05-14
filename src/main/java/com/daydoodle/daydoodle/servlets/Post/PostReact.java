@@ -31,16 +31,18 @@ public class PostReact extends HttpServlet {
         String postIdString = req.getParameter("postId");
         String reaction= req.getParameter("reaction");
         Long postId = Long.parseLong(postIdString);
-
         log.info("\n Entered PostReact.doGet for the post: "+postId+" with the reaction "+reaction+" \n");
+
         if(reaction != null){
             if(reaction.equals("like")){
-                log.info("\n Added like reaction to post \n");
+                log.info("\n Added like reaction to post --> forwarding to Feed\n");
+                postReactionBean.removeOtherReactionsFromUser(postId,user.getUsername());
                 postReactionBean.addReactionToPost(postId, user.getUsername(), PostReaction.ReactionType.LIKE);
                 resp.sendRedirect(req.getContextPath()+"/Feed");
 
             }else if (reaction.equals("star")){
-                log.info("\n Added star reaction to post \n");
+                log.info("\n Added star reaction to post --> forwarding to Feed\n");
+                postReactionBean.removeOtherReactionsFromUser(postId,user.getUsername());
                 postReactionBean.addReactionToPost(postId, user.getUsername(), PostReaction.ReactionType.STAR);
                 resp.sendRedirect(req.getContextPath()+"/Feed");
             }
