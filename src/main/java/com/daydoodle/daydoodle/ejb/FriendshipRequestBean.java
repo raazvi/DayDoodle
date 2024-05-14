@@ -197,8 +197,7 @@ public class FriendshipRequestBean {
         log.info("\n** Entered setFriendshipStatusDeclined method. **\n");
 
         FriendshipRequest friendshipRequest=entityManager.find(FriendshipRequest.class,reqId);
-        friendshipRequest.setStatus(FriendshipRequest.RequestStatus.REJECTED);
-        entityManager.merge(friendshipRequest);
+        entityManager.remove(friendshipRequest);
         log.info("\n** Exited setFriendshipStatusDeclined method. **\n");
     }
 }

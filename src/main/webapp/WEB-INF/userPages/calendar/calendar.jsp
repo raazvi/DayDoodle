@@ -17,11 +17,9 @@
             <div class="col mt-3">
                 <a href="${pageContext.request.contextPath}/AddEvent?calendarId=${calendar.id}" data-toggle="tooltip" data-placement="bottom" title="Click on the button to add a new event to the current calendar">Add an event to your calendar</a>
             </div>
-            <!--
             <div class="col mt-3">
-                <a>Button Add User</a>
+                <a href="${pageContext.request.contextPath}/AddUserToCalendar?calendarId=${calendar.id}" data-toggle="tooltip" data-placement="bottom" title="Click on the button to add a user to your calendar, they will be able to add events to your calendar.">Add a user to the calendar</a>
             </div>
-            -->
         </div>
         <div class="row">
             <div class="col">

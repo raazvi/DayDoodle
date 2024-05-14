@@ -35,8 +35,6 @@ public class RespondFriendRequest extends HttpServlet {
                 otherUserUsername = req.getParameter("username");
             } catch (NumberFormatException e) {
                 log.warning("Error parsing request ID: " + e.getMessage());
-                // Handle the parsing error
-                // You might want to send an error response or redirect the user to an error page.
                 return;
             }
 

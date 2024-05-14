@@ -64,9 +64,6 @@
                                     ${friend.friend.username}
                             </div>
                             <div class="col">
-                                Friends since: ${friend.dateCreated}
-                            </div>
-                            <div class="col">
                                 <form action="${pageContext.request.contextPath}/UserProfile" method="GET">
                                     <input type="hidden" name="username" value="${friend.friend.username}">
                                     <button type="submit">View Profile</button>

@@ -51,14 +51,14 @@ public class User {
         this.posts = posts;
     }
 
-//    @OneToMany(mappedBy = "user")
-//    private List<Friendship> friendships;
-//    public List<Friendship> getFriendships() {
-//        return friendships;
-//    }
-//    public void setFriendships(List<Friendship> friendships) {
-//        this.friendships = friendships;
-//    }
+    @OneToMany(mappedBy = "user")
+    private List<Friendship> friendships;
+    public List<Friendship> getFriendships() {
+        return friendships;
+    }
+    public void setFriendships(List<Friendship> friendships) {
+        this.friendships = friendships;
+    }
 
     private LocalDate dateJoined;
     public LocalDate getDateJoined() {
@@ -107,5 +107,21 @@ public class User {
     }
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    @OneToMany(mappedBy = "recipient", cascade = CascadeType.ALL)
+    private List<Notification> notifications;
+
+    public List<DiaryPage> getDiary() {
+        return diary;
+    }
+    public void setDiary(List<DiaryPage> diary) {
+        this.diary = diary;
+    }
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+    public void setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
     }
 }

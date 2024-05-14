@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.daydoodle.daydoodle.ejb.FriendshipBean;
 import com.daydoodle.daydoodle.ejb.FriendshipRequestBean;
+import com.daydoodle.daydoodle.ejb.NotificationBean;
 import com.daydoodle.daydoodle.entities.User;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
@@ -24,6 +25,8 @@ public class AddFriend extends HttpServlet {
     FriendshipBean friendshipBean;
     @Inject
     FriendshipRequestBean friendshipRequestBean;
+    @Inject
+    NotificationBean notificationBean;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,6 +38,7 @@ public class AddFriend extends HttpServlet {
         if (otherUserUsername != null && !otherUserUsername.isEmpty()) {
 
             friendshipRequestBean.createFriendshipRequest(user.getUsername(), otherUserUsername);
+            notificationBean.sendFriendshipRequestNotification(user.getUsername(), otherUserUsername);
             req.setAttribute("friendshipRequestSent", true);
             resp.sendRedirect(req.getContextPath()+"/UserProfile?username="+otherUserUsername);
         } else {

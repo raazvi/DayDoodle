@@ -44,6 +44,9 @@ public class Post {
         return activity != null ^ customActivity != null;
     }
 
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Notification> notifications;
+
     public Long getId() {
         return id;
     }
@@ -92,5 +95,10 @@ public class Post {
     public void setCustomActivity(CustomActivity customActivity) {
         this.customActivity = customActivity;
     }
-
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+    public void setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
+    }
 }
