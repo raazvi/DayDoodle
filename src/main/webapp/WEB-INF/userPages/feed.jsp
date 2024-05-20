@@ -60,7 +60,7 @@
                                             <a href="${pageContext.request.contextPath}/PostReact?postId=${post.id}&reaction=like" class="btn btn-primary">Like</a>
                                         </c:otherwise>
                                     </c:choose>
-                                    <a href="${pageContext.request.contextPath}/viewPostComments?postId=${post.id}" class="btn btn-primary">Comment</a>
+                                    <a href="${pageContext.request.contextPath}/ViewPost?postId=${post.id}" class="btn btn-primary">Comment</a>
                                 </div>
                             </div>
                         </div>

@@ -1,3 +1,5 @@
+package com.daydoodle.daydoodle.servlets;
+
 import com.daydoodle.daydoodle.ejb.UserBean;
 import com.daydoodle.daydoodle.entities.User;
 import jakarta.inject.Inject;

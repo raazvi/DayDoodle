@@ -43,7 +43,6 @@ public class PostBean {
         }
 
     }
-
     private List<PostDto> copyPostToDto(List<Post> posts) {
         log.info("\n Entered copyPostToDto method with list size of: " + posts.size() + " \n");
         List<PostDto> listToReturn = new ArrayList<PostDto>();
@@ -111,6 +110,9 @@ public class PostBean {
         log.info("\n Exited createPostWithCustomActivity method. \n");
     }
 
+    /**
+     * Finds all post of the user's friends.
+     */
     public List<PostDto> findFriendsPosts(List<String> userFriends, List<PostDto> allPosts) {
         log.info("\n Entered findFriendsPosts method for the user: "+userFriends.size()+" \n");
         List<PostDto> friendsPosts=new ArrayList<>();
@@ -124,6 +126,9 @@ public class PostBean {
 
     }
 
+    /**
+     * Finds a certain post by its id.
+     */
     public PostDto findPostById(Long postId) {
 
         List<PostDto> allPosts=findAllPosts();
@@ -134,5 +139,57 @@ public class PostBean {
         }
 
         return null;
+    }
+
+    /**
+     * Finds all posts by username.
+     */
+    public List<PostDto> findPostsByUser(String username) {
+
+        log.info("\n Entered findPostsByUser method for the user: "+username+" \n");
+        List<PostDto> posts=new ArrayList<>();
+        List<PostDto> allPosts=findAllPosts();
+        for(PostDto postDto:allPosts){
+            if(postDto.getAuthor().getUsername().equals(username)){
+                posts.add(postDto);
+            }
+        }
+
+        log.info("\n Exited findPostsByUser method. \n");
+        return posts;
+
+    }
+
+    /**
+     * Deletes a post based on the post id.
+     */
+    public void removePost(Long postId) {
+        log.info("\n Entered removePost method for the user: "+postId+" \n");
+        Post post=entityManager.find(Post.class,postId);
+        entityManager.remove(post);
+        log.info("\n Exited removePost method. \n");
+    }
+
+    /**
+     * Edit a post with a predefined activity.
+     */
+    public void editPostWithActivity(Long postId, String newCaption, Long activityId) {
+        log.info("\n Entered editPostWithActivity method for the post: "+postId+" \n");
+        Post post=entityManager.find(Post.class,postId);
+        post.setCaption(newCaption);
+        post.setActivity(entityManager.find(Activity.class,activityId));
+        entityManager.merge(post);
+        log.info("\n Exited editPostWithActivity method. \n");
+    }
+    /**
+     * Edit a post with a custom activity.
+     */
+    public void editPostWithCustomActivity(Long postId, String newCaption, Long customActivityId) {
+        log.info("\n Entered editPostWithCustomActivity method for the post: "+postId+" \n");
+        Post post=entityManager.find(Post.class,postId);
+        post.setCaption(newCaption);
+        post.setCustomActivity(entityManager.find(CustomActivity.class,customActivityId));
+        entityManager.merge(post);
+        log.info("\n Exited editPostWithCustomActivity method. \n");
     }
 }

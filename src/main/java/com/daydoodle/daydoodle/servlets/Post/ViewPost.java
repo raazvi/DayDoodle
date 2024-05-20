@@ -18,10 +18,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.logging.Logger;
 
-@WebServlet(name = "viewPostComments", value = "/viewPostComments")
-public class viewPostComments extends HttpServlet {
+@WebServlet(name = "ViewPost", value = "/ViewPost")
+public class ViewPost extends HttpServlet {
 
-    private static final Logger log = Logger.getLogger(viewPostComments.class.getName());
+    private static final Logger log = Logger.getLogger(ViewPost.class.getName());
 
     @Inject
     PostBean postBean;

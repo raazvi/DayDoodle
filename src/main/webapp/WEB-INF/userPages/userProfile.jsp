@@ -89,6 +89,24 @@
 
     <hr>
 
+    <h4> Your posts</h4>
+    <div class="row">
+        <c:forEach var="post" items="${posts}">
+            <div class="col-md-2 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">${post.caption}</h5>
+                        <p class="card-text">${post.datePosted}</p>
+                        <!-- TODO Numar reactii si comentarii la postare -->
+                        <a href="${pageContext.request.contextPath}/ViewPost?postId=${post.id}" class="btn btn-primary">View Post</a>
+                        <a href="${pageContext.request.contextPath}/EditPost?postId=${post.id}" class="btn btn-primary">Edit</a>
+                        <a href="${pageContext.request.contextPath}/DeletePost?postId=${post.id}" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+
     <h4>Your Available Activities</h4>
     <div class="row">
         <c:forEach var="customActivity" items="${customActivities}">
@@ -104,4 +122,5 @@
             </div>
         </c:forEach>
     </div>
+
 </t:pageTemplate>
