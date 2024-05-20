@@ -1,13 +1,13 @@
 package com.daydoodle.daydoodle.servlets.Calendar;
 
 import java.io.IOException;
-
+import java.util.*;
+import java.util.logging.Logger;
 import com.daydoodle.daydoodle.common.CalendarDto;
 import com.daydoodle.daydoodle.common.FriendshipDto;
 import com.daydoodle.daydoodle.ejb.CalendarBean;
 import com.daydoodle.daydoodle.ejb.FriendshipBean;
 import com.daydoodle.daydoodle.entities.CalendarEvent;
-import com.daydoodle.daydoodle.entities.Friendship;
 import com.daydoodle.daydoodle.entities.User;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
@@ -16,9 +16,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-import java.util.*;
-import java.util.logging.Logger;
 
 @WebServlet(name = "Calendar", value = "/Calendar")
 public class Calendar extends HttpServlet {
@@ -42,7 +39,6 @@ public class Calendar extends HttpServlet {
             "#99E6E6", "#6666FF"
     );
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -55,12 +51,16 @@ public class Calendar extends HttpServlet {
         req.setAttribute("calendar", calendar);
         List<CalendarEvent> eventsInCalendar = calendar.getEvents();
         req.setAttribute("events",eventsInCalendar);
+
         List<FriendshipDto> allUserFriendships=friendshipBean.findFriendshipsByUser(user.getUsername(), friendshipBean.findAllFriendships());
+
+        // Finds all friends of the user
         List<User> allFriends=new ArrayList<>();
         for(FriendshipDto fr:allUserFriendships){
             allFriends.add(fr.getFriend());
         }
 
+        // Finds all the friends of the user that are currently not in this calendar
         List<User> friendsNotInCalendar=new ArrayList<>();
         for(User u: allFriends){
             if(!calendar.getUsers().contains(u)){
@@ -68,28 +68,27 @@ public class Calendar extends HttpServlet {
             }
         }
 
-        req.setAttribute("friends", friendsNotInCalendar);
+        friendsNotInCalendar.removeIf(u -> calendar.getUsers().contains(u));
 
-        List<User> usersInCalendar=calendar.getUsers();
+        // Check if the calendar has been created by the user who is currently logged in
+        boolean isCalendarOwnedByThisUser=false;
+        if(calendar.getCreatedBy().equals(user.getUsername())){
+            isCalendarOwnedByThisUser=true;
+        }
 
-        Map<String, String> userColors = generateUserColors(usersInCalendar);
-        req.setAttribute("userColors", userColors);
-        req.setAttribute("usersInCalendar", usersInCalendar);
-
-        req.getRequestDispatcher("/WEB-INF/userPages/calendar/calendar.jsp").forward(req,resp);
-    }
-
-    private Map<String, String> generateUserColors(List<User> users) {
+        // Assign a unique color to each user in the calendar
         Map<String, String> userColors = new HashMap<>();
         int colorIndex = 0;
-
-        for (User user : users) {
-            String color = COLORS.get(colorIndex % COLORS.size());
-            userColors.put(user.getUsername(), color);
+        for (User u : calendar.getUsers()) {
+            userColors.put(u.getUsername(), COLORS.get(colorIndex % COLORS.size()));
             colorIndex++;
         }
 
-        return userColors;
-    }
+        req.setAttribute("friendsNotInCalendar", friendsNotInCalendar);
+        req.setAttribute("usersInCalendar", calendar.getUsers());
+        req.setAttribute("ownedByThisUser", isCalendarOwnedByThisUser);
+        req.setAttribute("userColors", userColors);
 
+        req.getRequestDispatcher("/WEB-INF/userPages/calendar/calendar.jsp").forward(req,resp);
+    }
 }

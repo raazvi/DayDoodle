@@ -28,26 +28,26 @@
             <div class="col mt-3">
                 <a href="${pageContext.request.contextPath}/AddEvent?calendarId=${calendar.id}" data-toggle="tooltip" data-placement="bottom" title="Click on the button to add a new event to the current calendar">Add an event to your calendar</a>
             </div>
-            <c:if test="${calendar.createdBy eq sessionScope.currentUser.username}">
+            <c:if test="${ownedByThisUser eq true}">
                 <div class="col mt-3">
                     <button class="btn btn-primary" data-toggle="modal" data-target="#addUserModal">Add a user to the calendar</button>
                 </div>
             </c:if>
         </div>
-        <div class="row">
-            <div class="col">
-                <h3 class="text-center">Your calendar: ${calendar.name}</h3>
-                <div id="calendar"></div>
-            </div>
-        </div>
-        <div class="row">
+        <div class="row mt-3">
             <div class="col">
                 <h4>Users in this calendar:</h4>
                 <ul class="user-list">
-                    <c:forEach var="usersInCalendar" items="${usersInCalendar}">
-                        <li style="background-color: ${userColors[usersInCalendar.username]};">${usersInCalendar.username}</li>
+                    <c:forEach var="userInCalendar" items="${usersInCalendar}">
+                        <li style="background-color: ${userColors[userInCalendar.username]}">${userInCalendar.username}</li>
                     </c:forEach>
                 </ul>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col">
+                <h3 class="text-center">Your calendar: ${calendar.name}</h3>
+                <div id="calendar"></div>
             </div>
         </div>
     </div>
@@ -67,7 +67,7 @@
                         <div class="form-group">
                             <label for="friendUsername">Select Friend:</label>
                             <select class="form-control" id="friendUsername" name="friendUsername">
-                                <c:forEach var="friend" items="${friends}">
+                                <c:forEach var="friend" items="${friendsNotInCalendar}">
                                     <option value="${friend.username}">${friend.username}</option>
                                 </c:forEach>
                             </select>
@@ -124,8 +124,6 @@
     document.addEventListener('DOMContentLoaded', function() {
         const calendarEl = document.getElementById('calendar');
 
-        const userColors = ${userColors};
-
         const events = [
             <c:forEach items="${events}" var="event">
             {
@@ -136,8 +134,7 @@
                 createdBy: '${event.user.username}',
                 activityName: '${event.activity != null ? event.activity.name : event.userActivity.name}',
                 id: '${event.id}', // Make sure the event id is included
-                backgroundColor: userColors['${event.user.username}'],
-                borderColor: userColors['${event.user.username}']
+                color: '${userColors[event.user.username]}', // Add this line to set the event color
             },
             </c:forEach>
         ];

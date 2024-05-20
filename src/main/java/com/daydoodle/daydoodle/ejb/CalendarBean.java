@@ -11,6 +11,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -136,5 +137,44 @@ public class CalendarBean {
         user.getCalendars().add(calendar);
         entityManager.merge(user);
         log.info("\n Exited addUserToCalendar method. \n");
+    }
+
+    /**
+     * User leaves a calendar
+     */
+    public void leaveCalendar(String username, Long calendarId) {
+        log.info("\n Entered leaveCalendar method \n");
+        Calendar calendar=entityManager.find(Calendar.class,calendarId);
+        User user=entityManager.find(User.class,username);
+        calendar.getUsers().remove(user);
+        user.getCalendars().remove(calendar);
+
+        // Use iterator to avoid ConcurrentModificationException
+        for (Iterator<CalendarEvent> iterator = user.getCalendarEvents().iterator(); iterator.hasNext();) {
+            CalendarEvent ce = iterator.next();
+            if (ce.getCalendar().getId().equals(calendarId)) {
+                iterator.remove();
+                calendar.getEvents().remove(ce);
+            }
+        }
+
+        entityManager.merge(calendar);
+        entityManager.merge(user);
+        log.info("\n Exited leaveCalendar method. \n");
+    }
+
+    /**
+     * Deletes a calendar
+     */
+    public void deleteCalendar(Long calendarId) {
+        log.info("\n Entered deleteCalendar method \n");
+        Calendar calendar=entityManager.find(Calendar.class,calendarId);
+        for(User u: calendar.getUsers()){
+            u.getCalendarEvents().removeIf(ce -> ce.getCalendar().equals(calendar));
+            u.getCalendars().remove(calendar);
+        }
+        calendar.getEvents().clear();
+        entityManager.remove(calendar);
+        log.info("\n Exited deleteCalendar method. \n");
     }
 }
