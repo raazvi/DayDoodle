@@ -51,7 +51,8 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Add Activity</button>
-            <input type="hidden" name="page" value="addPost">
+            <input type="hidden" name="postId" value="${post.id}">
+            <input type="hidden" name="page" value="editPost">
         </form>
     </div>
 

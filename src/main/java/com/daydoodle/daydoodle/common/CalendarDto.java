@@ -12,13 +12,15 @@ public class CalendarDto {
     String description;
     private List<User> users;
     private List<CalendarEvent> events;
+    private String createdBy;
 
-    public CalendarDto(Long id, String name, String description, List<User> users, List<CalendarEvent> events) {
+    public CalendarDto(Long id, String name, String description, List<CalendarEvent> events, List<User> users, String createdBy) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.users = users;
         this.events = events;
+        this.users = users;
+        this.createdBy = createdBy;
     }
     public CalendarDto(String name, String description, List<User> users, List<CalendarEvent> events) {
         this.name = name;
@@ -43,5 +45,8 @@ public class CalendarDto {
     }
     public List<CalendarEvent> getEvents() {
         return events;
+    }
+    public String getCreatedBy() {
+        return createdBy;
     }
 }

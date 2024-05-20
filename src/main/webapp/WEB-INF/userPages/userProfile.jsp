@@ -63,31 +63,9 @@
                 <div>
                     <a class="btn btn-secondary" href="${pageContext.request.contextPath}/EditProfile">Edit your profile</a>
                 </div>
-                <!-- TODO Cand fac fr req sa decomentez aici
-                <div>
-                    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/ViewFriendRequests?username=${user.username}">Friend Requests</a>
-                </div>
-                -->
             </div>
         </div>
     </div>
-
-    <!-- User's activities and Insert activity form -->
-    <h4>Add New Custom Activity</h4>
-    <p> By filling in the form below, you can add a new custom activity that you define and that you will be able to use across the whole app.</p>
-    <form action="${pageContext.request.contextPath}/AddCustomActivity" method="post">
-        <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" required>
-        </div>
-        <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <textarea class="form-control" id="description" name="description" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Add Activity</button>
-    </form>
-
-    <hr>
 
     <h4> Your posts</h4>
     <div class="row">
@@ -106,6 +84,25 @@
             </div>
         </c:forEach>
     </div>
+
+    <hr>
+
+    <!-- User's activities and Insert activity form -->
+    <h4>Add New Custom Activity</h4>
+    <p> By filling in the form below, you can add a new custom activity that you define and that you will be able to use across the whole app.</p>
+    <form action="${pageContext.request.contextPath}/AddCustomActivity" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Activity</button>
+    </form>
+
+    <hr>
 
     <h4>Your Available Activities</h4>
     <div class="row">

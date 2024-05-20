@@ -32,6 +32,7 @@ public class AddCustomActivity extends HttpServlet {
         User user = (User) session.getAttribute("user");
         String page=req.getParameter("page");
         String calendarId=req.getParameter("calendarId");
+        String postId=req.getParameter("postId");
         Long calendarIdLong=0L;
         if(calendarId!=null) {
             calendarIdLong=Long.parseLong(calendarId);
@@ -46,6 +47,9 @@ public class AddCustomActivity extends HttpServlet {
         }else if(Objects.equals(page, "addEvent")){
             log.info("\n Exited AddCustomActivity.doPost --> AddEvent \n");
             resp.sendRedirect(req.getContextPath() + "/AddEvent?calendarId="+calendarIdLong);
+        }else if(Objects.equals(page,"editPost")){
+            log.info("\n Exited AddCustomActivity.doPost --> Edit Post \n");
+            resp.sendRedirect(req.getContextPath() + "/EditPost?postId="+postId);
         }else{
             log.info("\n Exited AddCustomActivity.doPost --> Profile \n");
             resp.sendRedirect(req.getContextPath() + "/Profile");

@@ -21,6 +21,10 @@
                     <div class="col">
                         <p>${calendar.description}</p>
                     </div>
+                    <div class="col">
+                        <!-- TODO -->
+                        <p> Delete Calendar</p>
+                    </div>
                 </div>
             </c:forEach>
             <div class="row">

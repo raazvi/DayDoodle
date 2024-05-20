@@ -45,7 +45,7 @@ public class CalendarBean {
         List<CalendarDto> listToReturn = new ArrayList<CalendarDto>();
 
         for (Calendar calendar : calendars) {
-            CalendarDto calendarDtoTemp = new CalendarDto(calendar.getId(), calendar.getName(), calendar.getDescription(), calendar.getUsers(), calendar.getEvents());
+            CalendarDto calendarDtoTemp = new CalendarDto(calendar.getId(),calendar.getName(),calendar.getDescription(),calendar.getEvents(),calendar.getUsers(),calendar.getCreatedBy());
             listToReturn.add(calendarDtoTemp);
         }
 
@@ -112,6 +112,9 @@ public class CalendarBean {
         return userCalendars;
     }
 
+    /**
+     * Deletes an event from the calendar
+     */
     public void deleteEventFromCalendar(Long calendarIdLong, Long eventIdLong) {
         log.info("\n Entered deleteEventFromCalendar method \n");
         Calendar calendar=entityManager.find(Calendar.class,calendarIdLong);
@@ -119,5 +122,19 @@ public class CalendarBean {
         calendar.getEvents().remove(calendarEvent);
         entityManager.merge(calendar);
         log.info("\n Exited deleteEventFromCalendar method. \n");
+    }
+
+    /**
+     * Add a user to the calendar.
+     */
+    public void addUserToCalendar(String friendUsername, Long calendarId) {
+        log.info("\n Entered addUserToCalendar method \n");
+        Calendar calendar=entityManager.find(Calendar.class,calendarId);
+        User user=entityManager.find(User.class,friendUsername);
+        calendar.getUsers().add(user);
+        entityManager.merge(calendar);
+        user.getCalendars().add(calendar);
+        entityManager.merge(user);
+        log.info("\n Exited addUserToCalendar method. \n");
     }
 }
