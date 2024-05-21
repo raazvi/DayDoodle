@@ -9,18 +9,18 @@
     <form method="POST" action="${pageContext.request.contextPath}/AddEvent">
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="title">Title:</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Enter event title" value="">
+                <label for="title">*Title:</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter event title" value="" required>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="fromDate">From:</label>
-                <input type="datetime-local" class="form-control" id="fromDate" name="fromDate" value="">
+                <label for="fromDate">*From:</label>
+                <input type="datetime-local" class="form-control" id="fromDate" name="fromDate" value="" required>
             </div>
             <div class="col-md-6 mb-3">
-                <label for="toDate">To:</label>
-                <input type="datetime-local" class="form-control" id="toDate" name="toDate" value="">
+                <label for="toDate">*To:</label>
+                <input type="datetime-local" class="form-control" id="toDate" name="toDate" value="" required>
             </div>
         </div>
         <div class="row">
@@ -37,8 +37,8 @@
         </div>
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="activity">Activity:</label>
-                <select class="form-control" id="activity" name="activity">
+                <label for="activity">*Activity:</label>
+                <select class="form-control" id="activity" name="activity" required>
                     <option value="" selected disabled>Choose an activity</option>
                     <c:forEach var="activity" items="${activities}">
                         <option value="a${activity.id}">${activity.name}</option>

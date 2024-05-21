@@ -105,7 +105,7 @@ public class CalendarEventBean {
         User user=entityManager.find(User.class,username);
         CalendarEvent calendarEvent=entityManager.find(CalendarEvent.class,eventIdLong);
         user.getCalendarEvents().remove(calendarEvent);
-        entityManager.remove(calendarEvent);
+        //entityManager.remove(calendarEvent);
         log.info("\n Exited deleteEvent method. \n");
     }
 }
