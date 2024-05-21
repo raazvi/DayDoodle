@@ -4,6 +4,7 @@ import com.daydoodle.daydoodle.entities.Post;
 import com.daydoodle.daydoodle.entities.User;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class PostCommentDto {
 
@@ -27,6 +28,11 @@ public class PostCommentDto {
         this.post = post;
     }
     public PostCommentDto() {
+    }
+
+    public String getFormattedPostedAt() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return postedAt.format(formatter);
     }
 
     public Long getId() {

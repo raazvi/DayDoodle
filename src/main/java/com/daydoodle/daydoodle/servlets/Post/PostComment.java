@@ -2,6 +2,9 @@ package com.daydoodle.daydoodle.servlets.Post;
 
 import java.io.IOException;
 
+import com.daydoodle.daydoodle.common.PostDto;
+import com.daydoodle.daydoodle.ejb.NotificationBean;
+import com.daydoodle.daydoodle.ejb.PostBean;
 import com.daydoodle.daydoodle.ejb.PostCommentBean;
 import com.daydoodle.daydoodle.entities.User;
 import jakarta.inject.Inject;
@@ -21,6 +24,10 @@ public class PostComment extends HttpServlet {
 
     @Inject
     PostCommentBean postCommentBean;
+    @Inject
+    NotificationBean notificationBean;
+    @Inject
+    PostBean postBean;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,9 +39,11 @@ public class PostComment extends HttpServlet {
         Long postId = Long.parseLong(postIdStr);
         String commentContent = req.getParameter("commentContent");
         postCommentBean.addCommentToPost(postId, user.getUsername(), commentContent);
+        PostDto thisPost=postBean.findPostById(postId);
+        notificationBean.sendCommentOnPostNotification(user.getUsername(),thisPost.getAuthor().getUsername(),postId);
 
         log.info("\n Redirecting to viewPostComments with the postId: " + postId + "\n");
-        resp.sendRedirect(req.getContextPath() + "/viewPostComments?postId=" + postId);
+        resp.sendRedirect(req.getContextPath() + "/ViewPost?postId=" + postId);
 
 
     }

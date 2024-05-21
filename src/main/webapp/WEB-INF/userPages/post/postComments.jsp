@@ -29,7 +29,7 @@
                 <li>
                     <p>${comment.content}</p>
                     <p>Posted by: ${comment.user.username}</p>
-                    <p>Date Posted: ${comment.postedAt}</p>
+                    <p> <small> Date Posted: ${comment.formattedPostedAt} </small></p>
                 </li>
             </c:forEach>
             <c:if test="${empty comments}">
@@ -39,7 +39,7 @@
     </div>
 
     <div>
-        <form action="${pageContext.request.contextPath}/PostComment" method="GET">
+        <form action="${pageContext.request.contextPath}/PostComment?postId=${post.id}" method="GET">
             <input type="hidden" name="postId" value="${post.id}">
             <label for="commentContent">Add Comment:</label>
             <textarea id="commentContent" name="commentContent"></textarea>

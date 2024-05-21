@@ -27,10 +27,10 @@
                     </div>
                 </div>
             </c:forEach>
-            <div class="row">
-                <a href="${pageContext.request.contextPath}/AddCalendar">Create a new calendar!</a>
-            </div>
         </c:if>
+        <div class="row">
+            <a href="${pageContext.request.contextPath}/AddCalendar">Create a new calendar!</a>
+        </div>
         <c:if test="${not empty notYourCalendars}">
             <h4>Calendars You've Been Invited On</h4>
             <c:forEach var="calendar" items="${notYourCalendars}">

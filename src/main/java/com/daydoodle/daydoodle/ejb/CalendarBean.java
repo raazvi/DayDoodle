@@ -144,17 +144,16 @@ public class CalendarBean {
      */
     public void leaveCalendar(String username, Long calendarId) {
         log.info("\n Entered leaveCalendar method \n");
-        Calendar calendar=entityManager.find(Calendar.class,calendarId);
-        User user=entityManager.find(User.class,username);
+        Calendar calendar = entityManager.find(Calendar.class, calendarId);
+        User user = entityManager.find(User.class, username);
         calendar.getUsers().remove(user);
         user.getCalendars().remove(calendar);
 
-        // Use iterator to avoid ConcurrentModificationException
-        for (Iterator<CalendarEvent> iterator = user.getCalendarEvents().iterator(); iterator.hasNext();) {
+        for (Iterator<CalendarEvent> iterator = calendar.getEvents().iterator(); iterator.hasNext();) {
             CalendarEvent ce = iterator.next();
-            if (ce.getCalendar().getId().equals(calendarId)) {
+            if (ce.getUser().equals(user)) {
                 iterator.remove();
-                calendar.getEvents().remove(ce);
+                entityManager.remove(ce);
             }
         }
 
