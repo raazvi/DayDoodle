@@ -78,7 +78,7 @@ public class User {
         this.diary = this.diary;
     }
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CalendarEvent> calendarEvents;
     public List<CalendarEvent> getCalendarEvents() {
         return calendarEvents;
