@@ -17,7 +17,7 @@
                 </li>
                 <!-- Added Calendar link -->
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/ViewCalendars"> Calendar </a>
+                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/ViewCalendars"> Calendars </a>
                 </li>
                 <!-- Added Friends link -->
                 <li class="nav-item">
@@ -51,7 +51,16 @@
                         </ul>
                     </li>
                 </c:if>
-                <!-- Log Out -->
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Settings">
+                        <i class="bi bi-gear"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Help">
+                        <i class="bi bi-question-circle"></i>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Logout"> Log Out </a>
                 </li>
