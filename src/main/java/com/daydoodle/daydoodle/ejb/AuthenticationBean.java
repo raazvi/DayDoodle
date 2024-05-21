@@ -47,7 +47,7 @@ public class AuthenticationBean {
     }
 
 
-    public String encryptPassword(String password) {
+    public static String encryptPassword(String password) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hashBytes = digest.digest(password.getBytes(StandardCharsets.UTF_8));

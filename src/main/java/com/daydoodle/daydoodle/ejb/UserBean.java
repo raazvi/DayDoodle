@@ -97,23 +97,6 @@ public class UserBean {
 //
 //    }
 //
-//    public List<UserDto> getSearchResultByKeyword (String keyword, List<UserDto> allUsers){
-//
-//        log.info("\n** Entered getSearchResultByKeyword method with keyword: " + keyword + " **\n");
-//
-//        List<UserDto> searchResults = new ArrayList<>();
-//
-//        for (UserDto user : allUsers) {
-//            if (user.getUsername().toLowerCase().contains(keyword.toLowerCase())) {
-//                // If the username contains the keyword (case-insensitive), add it to the search results
-//                searchResults.add(user);
-//            }
-//        }
-//
-//        log.info("\n** Exited getSearchResultByKeyword method. **\n");
-//        return searchResults;
-//
-//    }
 //
     /**
      * Finds all the usernames already existing in the table.
@@ -184,6 +167,20 @@ public class UserBean {
 
         log.info("\n Exited findUsersByKeyword method. \n");
         return matchingUsernames;
+    }
+
+    /**
+     * Updates the password of a user.
+     */
+    public void updatePassword(String username, String newPassword) {
+        User user = entityManager.find(User.class, username);
+        if (user != null) {
+            String encryptedPassword = new AuthenticationBean().encryptPassword(newPassword);
+            user.setPassword(encryptedPassword);
+            entityManager.merge(user);
+        } else {
+            throw new IllegalArgumentException("User not found.");
+        }
     }
 
 }
