@@ -2,6 +2,8 @@ package com.daydoodle.daydoodle.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Base64;
+
 @Entity
 public class Picture {
 
@@ -39,5 +41,10 @@ public class Picture {
     }
     public void setImageFormat(String imageFormat) {
         this.imageFormat = imageFormat;
+    }
+
+    @Transient
+    public String getBase64ImageData() {
+        return Base64.getEncoder().encodeToString(imageData);
     }
 }

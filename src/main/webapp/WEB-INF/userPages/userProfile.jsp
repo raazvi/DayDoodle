@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col-md-4 offset-md-4">
                         <c:if test="${not empty user.profilePicture}">
-                            <img src="data:image/<c:out value="${user.profilePicture.imageFormat}" />;base64,${java.util.Base64.getEncoder().encodeToString(user.profilePicture.imageData)}" alt="Profile Picture" width="200" height="200">
+                            <img src="data:image/${user.profilePicture.imageFormat};base64,${user.profilePicture.base64ImageData}" alt="Profile Picture" width="200" height="200">
                         </c:if>
                         <c:if test="${empty user.profilePicture}">
                             <img src="default-profile-picture.jpg" alt="Default Profile Picture" width="200" height="200">
