@@ -1,25 +1,29 @@
 package com.daydoodle.daydoodle.servlets;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.logging.Logger;
 
 import com.daydoodle.daydoodle.common.ActivityDto;
 import com.daydoodle.daydoodle.common.CustomActivityDto;
 import com.daydoodle.daydoodle.ejb.ActivityBean;
 import com.daydoodle.daydoodle.ejb.CustomActivityBean;
 import com.daydoodle.daydoodle.ejb.PostBean;
+import com.daydoodle.daydoodle.entities.Picture;
 import com.daydoodle.daydoodle.entities.User;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-import java.util.List;
-import java.util.logging.Logger;
+import jakarta.servlet.http.Part;
 
 @WebServlet(name = "AddPost", value = "/AddPost")
+@MultipartConfig
 public class AddPost extends HttpServlet {
 
     private static final Logger log = Logger.getLogger(AddPost.class.getName());
@@ -38,8 +42,8 @@ public class AddPost extends HttpServlet {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
 
-        List<ActivityDto> activities= activityBean.findAllActivities();
-        List<CustomActivityDto> customActivities= customActivityBean.findAllCustomActivitiesByUsername(user.getUsername(),customActivityBean.findAllCustomActivities());
+        List<ActivityDto> activities = activityBean.findAllActivities();
+        List<CustomActivityDto> customActivities = customActivityBean.findAllCustomActivitiesByUsername(user.getUsername(), customActivityBean.findAllCustomActivities());
 
         req.setAttribute("activities", activities);
         req.setAttribute("customActivities", customActivities);
@@ -49,40 +53,53 @@ public class AddPost extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        log.info("\n Entered AddPost.doPost method with the caption: " + req.getParameter("caption") +" \n");
+        log.info("\n Entered AddPost.doPost method with the caption: " + req.getParameter("caption") + " \n");
 
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
-        String username=user.getUsername();
+        String username = user.getUsername();
 
-        String caption=req.getParameter("caption");
-        String tempActivity=req.getParameter("activity");
+        String caption = req.getParameter("caption");
+        String tempActivity = req.getParameter("activity");
         Long activityId, customActivityId;
         char activityType;
 
-        activityType=tempActivity.charAt(0);
+        activityType = tempActivity.charAt(0);
 
         log.info("\n Detecting activity type... \n");
-        if(activityType=='a'){
+        if (activityType == 'a') {
             String activityIdString = tempActivity.substring(1);
-            activityId=Long.parseLong(activityIdString);
-            customActivityId=null;
-
-        }else{
+            activityId = Long.parseLong(activityIdString);
+            customActivityId = null;
+        } else {
             String customActivityIdString = tempActivity.substring(1);
-            activityId=null;
-            customActivityId=Long.parseLong(customActivityIdString);;
+            activityId = null;
+            customActivityId = Long.parseLong(customActivityIdString);
         }
 
-        if(activityId!=null){
+        Picture picture = null;
+        Part picturePart = req.getPart("picture");
+        if (picturePart != null && picturePart.getSize() > 0) {
+            InputStream inputStream = picturePart.getInputStream();
+            byte[] imageData = inputStream.readAllBytes();
+            String imageName = picturePart.getSubmittedFileName();
+            String imageFormat = picturePart.getContentType();
+
+            picture = new Picture();
+            picture.setImageData(imageData);
+            picture.setImageName(imageName);
+            picture.setImageFormat(imageFormat);
+        }
+
+        if (activityId != null) {
             log.info("\n Creating a new post with a predefined activity! \n");
-            postBean.createPostWithActivity(username,caption,activityId);
-        }else {
+            postBean.createPostWithActivity(username, caption, activityId, picture);
+        } else {
             log.info("\n Creating a new post with a custom activity! \n");
-            postBean.createPostWithCustomActivity(username,caption,customActivityId);
+            postBean.createPostWithCustomActivity(username, caption, customActivityId, picture);
         }
 
         log.info("\n Exited AddPost.doPost method. \n");
-        resp.sendRedirect(req.getContextPath()+"/Feed");
+        resp.sendRedirect(req.getContextPath() + "/Feed");
     }
 }

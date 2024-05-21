@@ -17,6 +17,7 @@
                     <c:forEach var="post" items="${posts}">
                         <div class="col-md-4">
                             <div class="card mb-4 box-shadow">
+                                <img class="card-img-top" src="data:image/${post.picture.imageFormat};base64,${post.picture.base64ImageData}" alt="Post picture" style="width: 150px; height: 150px;">
                                 <div class="card-body">
                                     <p class="card-text">Author: ${post.author.username}</p>
                                     <p class="card-text">Date Posted: ${post.datePosted}</p>

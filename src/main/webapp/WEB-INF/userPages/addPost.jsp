@@ -1,10 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <t:pageTemplate pageTitle="Create a post!">
     <h1>New post...</h1>
-    <form method="POST" action="${pageContext.request.contextPath}/AddPost">
+    <form method="POST" action="${pageContext.request.contextPath}/AddPost" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="caption">Caption</label>
@@ -26,6 +26,12 @@
                         <option value="createNew">Create a new activity</option>
                     </optgroup>
                 </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="picture">Picture</label>
+                <input type="file" class="form-control" id="picture" name="picture">
             </div>
         </div>
         <input type="submit" value="Post!">

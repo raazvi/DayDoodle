@@ -43,22 +43,35 @@ public class PostBean {
         }
 
     }
+
     private List<PostDto> copyPostToDto(List<Post> posts) {
         log.info("\n Entered copyPostToDto method with list size of: " + posts.size() + " \n");
-        List<PostDto> listToReturn = new ArrayList<PostDto>();
+        List<PostDto> listToReturn = new ArrayList<>();
         PostDto postDtoTemp;
 
         for (Post p : posts) {
-
             if (p == null) {
-                postDtoTemp = new PostDto(p.getId(), p.getDatePosted(), p.getCaption(), p.getAuthor(), p.getCustomActivity(),p.getComments(),p.getReactions());
+                postDtoTemp = new PostDto(p.getId(),p.getDatePosted(),p.getCaption(),p.getAuthor(),p.getActivity(),p.getComments(),p.getReactions(),p.getPicture());
             } else {
-                postDtoTemp = new PostDto(p.getId(), p.getDatePosted(), p.getCaption(), p.getAuthor(), p.getActivity(),p.getComments(),p.getReactions());
+                postDtoTemp = new PostDto(p.getId(),p.getDatePosted(),p.getCaption(),p.getAuthor(),p.getCustomActivity(),p.getComments(),p.getReactions(),p.getPicture());
             }
 
             listToReturn.add(postDtoTemp);
         }
-        listToReturn.sort(Comparator.comparing(PostDto::getDatePosted).reversed());
+
+        listToReturn.sort((p1, p2) -> {
+            LocalDate date1 = p1.getDatePosted();
+            LocalDate date2 = p2.getDatePosted();
+            if (date1 == null && date2 == null) {
+                return 0;
+            } else if (date1 == null) {
+                return 1;
+            } else if (date2 == null) {
+                return -1;
+            } else {
+                return date2.compareTo(date1);
+            }
+        });
 
         log.info("\n Exited copyPostToDto method. \n");
         return listToReturn;
@@ -67,47 +80,39 @@ public class PostBean {
     /**
      * Creates a new post with a predefined activity.
      */
-    public void createPostWithActivity(String authorUsername, String caption, Long activityId){
-        log.info("\n Entered createPost method for the user: "+authorUsername+" \n");
+    public void createPostWithActivity(String username, String caption, Long activityId, Picture picture) {
+        User user = entityManager.find(User.class, username);
+        Activity activity = entityManager.find(Activity.class, activityId);
+        Post post = new Post();
+        post.setAuthor(user);
+        post.setCaption(caption);
+        post.setActivity(activity);
+        post.setPicture(picture);
+        post.setDatePosted(LocalDate.now());
 
-        Post newPost = new Post();
-        newPost.setCaption(caption);
-        newPost.setDatePosted(LocalDate.now());
-
-        Activity activity=entityManager.find(Activity.class,activityId);
-        newPost.setActivity(activity);
-
-        User author=entityManager.find(User.class,authorUsername);
-        author.getPosts().add(newPost);
-        newPost.setAuthor(author);
-
-        newPost.setReactions(new ArrayList<PostReaction>());
-        newPost.setComments(new ArrayList<PostComment>());
-
-        entityManager.persist(newPost);
-
-        log.info("\n Exited createPostWithCustomActivity method. \n");
-
+        if (picture != null) {
+            entityManager.persist(picture);
+        }
+        entityManager.persist(post);
     }
 
     /**
      * Creates a new post with a user-specific activity (custom activity)
      */
-    public void createPostWithCustomActivity(String authorUsername, String caption, Long customActivityId){
-        Post newPost = new Post();
-        newPost.setCaption(caption);
-        newPost.setDatePosted(LocalDate.now());
+    public void createPostWithCustomActivity(String username, String caption, Long customActivityId, Picture picture) {
+        User user = entityManager.find(User.class, username);
+        CustomActivity customActivity = entityManager.find(CustomActivity.class, customActivityId);
+        Post post = new Post();
+        post.setAuthor(user);
+        post.setCaption(caption);
+        post.setCustomActivity(customActivity);
+        post.setPicture(picture);
+        post.setDatePosted(LocalDate.now());
 
-        CustomActivity ca=entityManager.find(CustomActivity.class,customActivityId);
-        newPost.setCustomActivity(ca);
-
-        User author=entityManager.find(User.class,authorUsername);
-        author.getPosts().add(newPost);
-        newPost.setAuthor(author);
-
-        entityManager.persist(newPost);
-
-        log.info("\n Exited createPostWithCustomActivity method. \n");
+        if (picture != null) {
+            entityManager.persist(picture);
+        }
+        entityManager.persist(post);
     }
 
     /**

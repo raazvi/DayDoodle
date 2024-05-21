@@ -47,6 +47,9 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Notification> notifications;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Picture picture;
+
     public Long getId() {
         return id;
     }
@@ -100,5 +103,11 @@ public class Post {
     }
     public void setNotifications(List<Notification> notifications) {
         this.notifications = notifications;
+    }
+    public Picture getPicture() {
+        return picture;
+    }
+    public void setPicture(Picture picture) {
+        this.picture = picture;
     }
 }
