@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
+<c:set var="currentUser" value="${sessionScope.user.username}" />
+
 <t:pageTemplate pageTitle="Calendar">
     <style>
         #calendar {
@@ -94,7 +96,7 @@
                     <p><strong>Activity:</strong> <span id="eventActivity"></span></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" id="deleteEventBtn">Delete Event</button>
+                    <button type="button" class="btn btn-danger" id="deleteEventBtn" style="display: none;">Delete Event</button>
                 </div>
             </div>
         </div>
@@ -149,6 +151,14 @@
                 document.getElementById('eventDescription').textContent = info.event.extendedProps.description;
                 document.getElementById('eventCreatedBy').textContent = info.event.extendedProps.createdBy;
                 document.getElementById('eventActivity').textContent = info.event.extendedProps.activityName;
+
+                // Check if currentUser is the creator of the event
+                if ('${currentUser}' === info.event.extendedProps.createdBy) {
+                    document.getElementById('deleteEventBtn').style.display = 'block';
+                } else {
+                    document.getElementById('deleteEventBtn').style.display = 'none';
+                }
+
                 $('#eventModal').modal('show');
 
                 // Add event listener for the delete button in the modal
