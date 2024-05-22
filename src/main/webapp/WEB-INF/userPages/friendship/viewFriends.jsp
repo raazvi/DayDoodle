@@ -68,12 +68,11 @@
                                     <input type="hidden" name="username" value="${friend.friend.username}">
                                     <button type="submit">View Profile</button>
                                 </form>
-                                <!--
                                 <form action="${pageContext.request.contextPath}/DeleteFriend" method="GET">
                                     <input type="hidden" name="username" value="${friend.friend.username}">
+                                    <input type="hidden" name="friendshipId" value="${friend.id}">
                                     <button type="submit">Delete Friend</button>
                                 </form>
-                                -->
                             </div>
                         </div>
                     </c:forEach>

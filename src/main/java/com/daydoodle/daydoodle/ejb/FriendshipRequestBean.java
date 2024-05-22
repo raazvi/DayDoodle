@@ -200,4 +200,29 @@ public class FriendshipRequestBean {
         entityManager.remove(friendshipRequest);
         log.info("\n** Exited setFriendshipStatusDeclined method. **\n");
     }
+
+    /**
+     * Finds a friendship request sent from user 1 to user 2
+     */
+    public FriendshipRequestDto findFriendshipRequestFromTo(String fromUsername, String toUsername){
+        log.info("\n** Entered findFriendshipRequestFromTo method. **\n");
+        List<FriendshipRequestDto> allFriendshipRequests = findAllFriendshipRequests();
+        for(FriendshipRequestDto frq : allFriendshipRequests){
+            if(frq.getReceiver().getUsername().equals(toUsername) && frq.getRequester().getUsername().equals(fromUsername)){
+                return frq;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Removes a friendship request
+     */
+    public void removeFriendshipRequest(FriendshipRequestDto frq) {
+        log.info("\n** Entered removeFriendshipRequest method. **\n");
+        FriendshipRequest friendshipRequest=entityManager.find(FriendshipRequest.class,frq.getId());
+        entityManager.remove(friendshipRequest);
+        log.info("\n** Exited removeFriendshipRequest method. **\n");
+    }
 }
