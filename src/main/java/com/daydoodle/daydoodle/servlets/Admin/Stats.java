@@ -8,8 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.daydoodle.daydoodle.ejb.UserBean;
-import com.daydoodle.daydoodle.ejb.UserDetailsBean;
+import com.daydoodle.daydoodle.ejb.*;
 import com.daydoodle.daydoodle.common.UserDetailsDto;
 import com.daydoodle.daydoodle.common.UserDto;
 import jakarta.inject.Inject;
@@ -29,6 +28,12 @@ public class Stats extends HttpServlet {
     UserDetailsBean userDetailsBean;
     @Inject
     UserBean userBean;
+    @Inject
+    ActivityBean activityBean;
+    @Inject
+    PostBean postBean;
+    @Inject
+    CalendarBean calendarBean;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

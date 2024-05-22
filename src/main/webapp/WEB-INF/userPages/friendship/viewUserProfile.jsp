@@ -6,12 +6,26 @@
     <div class="container text-center">
 
         <div class="row">
-            <div class="col-md-6 offset-md-3">
+            <div class="col-md-6-mt-7 offset-md-3">
                 <c:if test="${not empty userDetails.username}">
-                    <p>Username: ${userDetails.username} (${userDetails.pronouns})</p>
+                    <p>Username: ${userDetails.username} <c:if test="${not empty userDetails.pronouns }"> (${userDetails.pronouns}) </c:if> </p>
+                </c:if>
+
+                <c:if test="${not empty userDetails.profilePicture}">
+                    <!-- Profile Picture -->
+                    <div class="row">
+                        <div class="col-md-4 offset-md-4">
+                            <c:if test="${not empty userDetails.profilePicture}">
+                                <img src="data:image/${userDetails.profilePicture.imageFormat};base64,${userDetails.profilePicture.base64ImageData}" alt="Profile Picture" width="200" height="200">
+                            </c:if>
+                            <c:if test="${empty userDetails.profilePicture}">
+                                <img src="default-profile-picture.jpg" alt="Default Profile Picture" width="200" height="200">
+                            </c:if>
+                        </div>
+                    </div>
                 </c:if>
                 <c:if test="${not empty userDetails.firstName}">
-                    <p>Full name: ${userDetails.firstName} ${userDetails.lastName}, but they like to be called ${userDetails.nickname}</p>
+                    <p>Their name is ${userDetails.firstName} ${userDetails.lastName}, but they like to be called ${userDetails.nickname}</p>
                 </c:if>
                 <c:if test="${not empty userDetails.description}">
                     <p>About themselves: ${userDetails.description}</p>

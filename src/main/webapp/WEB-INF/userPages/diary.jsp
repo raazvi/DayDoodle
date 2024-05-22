@@ -6,6 +6,17 @@
     <h3>Welcome to Your Diary!</h3>
     <p>Express yourself, reflect on your thoughts, and capture your experiences. Your diary is a safe space for your innermost thoughts.</p>
     <div>
+        <p>If you don't feel inspired, here's something to reflect on, maybe you can write about it:</p>
+        <div>
+            <table>
+                    <c:if test="${not empty diaryIdeas}">
+                       <tr> <p id="diaryIdea">${diaryIdeas[0].prompt}</p> </tr>
+                        <tr> <button id="newIdeaButton">Get a New Idea</button></tr>
+                    </c:if>
+            </table>
+        </div>
+    </div>
+    <div>
         <c:if test="${empty pages}">
             <p>No pages yet.</p>
         </c:if>
@@ -34,4 +45,13 @@
             <button type="submit">Write in your diary</button>
         </form>
     </div>
+    <script>
+        document.getElementById("newIdeaButton").addEventListener("click", function() {
+            fetch('${pageContext.request.contextPath}/DiaryIdea')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("diaryIdea").innerText = data;
+                });
+        });
+    </script>
 </t:pageTemplate>
