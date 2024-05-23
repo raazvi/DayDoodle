@@ -69,15 +69,19 @@
                     </div>
                 </div>
 
-                <h4> Your posts</h4>
+                <h4>Your posts</h4>
                 <div class="row">
                     <c:forEach var="post" items="${posts}">
                         <div class="col-md-2 mb-3">
                             <div class="card">
+                                <c:if test="${not empty post.picture}">
+                                    <img class="card-img-top" src="data:image/${post.picture.imageFormat};base64,${post.picture.base64ImageData}" alt="Post picture" style="width: 100px; height: 100px;">
+                                </c:if>
                                 <div class="card-body">
                                     <h5 class="card-title">${post.caption}</h5>
                                     <p class="card-text">${post.datePosted}</p>
-                                    <!-- TODO Numar reactii si comentarii la postare -->
+                                    <p class="card-text">Reactions: ${post.reactionsCount}</p>
+                                    <p class="card-text">Comments: ${post.commentsCount}</p>
                                     <a href="${pageContext.request.contextPath}/ViewPost?postId=${post.id}" class="btn btn-primary">View Post</a>
                                     <a href="${pageContext.request.contextPath}/EditPost?postId=${post.id}" class="btn btn-primary">Edit</a>
                                     <a href="${pageContext.request.contextPath}/DeletePost?postId=${post.id}" class="btn btn-danger">Delete</a>
@@ -141,7 +145,6 @@
                                 ${notification.message} <br> <small>${notification.formattedCreatedAt}</small>
                         </a>
                     </c:forEach>
-
                 </div>
             </div>
         </div>

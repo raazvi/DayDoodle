@@ -7,6 +7,9 @@
     <div>
         <h3>${post.author.username}'s Post</h3>
         <p>Date Posted: ${post.datePosted}</p>
+        <c:if test="${not empty post.picture}">
+            <img class="card-img-top" src="data:image/${post.picture.imageFormat};base64,${post.picture.base64ImageData}" alt="Post picture" style="width: 150px; height: 150px;">
+        </c:if>
         <p>${post.caption}</p>
     </div>
 

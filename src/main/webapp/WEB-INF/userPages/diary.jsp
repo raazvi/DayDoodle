@@ -11,7 +11,7 @@
             <table>
                     <c:if test="${not empty diaryIdeas}">
                        <tr> <p id="diaryIdea">${diaryIdeas[0].prompt}</p> </tr>
-                        <tr> <button id="newIdeaButton">Get a New Idea</button></tr>
+                        <tr> <button id="newIdeaButton">Shuffle Ideas</button></tr>
                     </c:if>
             </table>
         </div>

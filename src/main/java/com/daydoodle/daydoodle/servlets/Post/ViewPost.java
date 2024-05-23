@@ -48,7 +48,7 @@ public class ViewPost extends HttpServlet {
 
         log.info("\n Exited viewPostComments.doGet with the following: " + post.getId() + " comments: " + allCommentsForPost.size() + " reactions: " + allReactionsForPost.size());
 
-        req.getRequestDispatcher("/WEB-INF/userPages/post/postComments.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/userPages/post/viewPost.jsp").forward(req, resp);
     }
 
 }

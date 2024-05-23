@@ -82,4 +82,10 @@ public class PostDto {
     public Picture getPicture() {
         return picture;
     }
+    public int getCommentsCount() {
+        return comments != null ? comments.size() : 0;
+    }
+    public int getReactionsCount() {
+        return reactions != null ? reactions.size() : 0;
+    }
 }

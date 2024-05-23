@@ -11,6 +11,11 @@
     </div>
     <h3>See what you have missed...</h3>
     <div class="container">
+        <div>
+            <c:if test="${not empty funFact}">
+                ${funFact.fact}
+            </c:if>
+        </div>
         <c:choose>
             <c:when test="${not empty posts}">
                 <div class="row">

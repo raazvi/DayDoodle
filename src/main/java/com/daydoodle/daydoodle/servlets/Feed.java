@@ -3,11 +3,9 @@ package com.daydoodle.daydoodle.servlets;
 import java.io.IOException;
 
 import com.daydoodle.daydoodle.common.FriendshipDto;
+import com.daydoodle.daydoodle.common.FunFactDto;
 import com.daydoodle.daydoodle.common.PostDto;
-import com.daydoodle.daydoodle.ejb.ActivityBean;
-import com.daydoodle.daydoodle.ejb.CustomActivityBean;
-import com.daydoodle.daydoodle.ejb.FriendshipBean;
-import com.daydoodle.daydoodle.ejb.PostBean;
+import com.daydoodle.daydoodle.ejb.*;
 import com.daydoodle.daydoodle.entities.CustomActivity;
 import com.daydoodle.daydoodle.entities.User;
 import jakarta.inject.Inject;
@@ -30,6 +28,8 @@ public class Feed extends HttpServlet {
     PostBean postBean;
     @Inject
     FriendshipBean friendshipBean;
+    @Inject
+    FunFactBean funFactBean;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -45,6 +45,9 @@ public class Feed extends HttpServlet {
 
         List<PostDto> friendsPosts=postBean.findFriendsPosts(userFriends,allPosts);
 
+        FunFactDto funFact = funFactBean.getRandomFunFact();
+
+        req.setAttribute("funFact", funFact);
         req.setAttribute("posts",friendsPosts);
         req.getRequestDispatcher("/WEB-INF/userPages/feed.jsp").forward(req,resp);
     }
