@@ -55,5 +55,4 @@ public class PictureBean {
 
         return listToReturn;
     }
-
 }

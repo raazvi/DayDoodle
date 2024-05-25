@@ -1,0 +1,241 @@
+/* General Styles */
+body {
+    background-color: #f0f8ff; /* Light pastel blue */
+    margin: 0;
+    font-family: Arial, sans-serif;
+    padding-top: 70px; /* Add padding to prevent content overlap with the navbar */
+}
+
+.container {
+    margin-top: 50px;
+}
+
+/* Centering Main Content */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+h3, h4 {
+    color: #333; /* Dark gray text color */
+}
+
+/* Form Styles */
+form {
+    margin: 20px 0;
+}
+
+label {
+    color: #333; /* Dark gray text color */
+}
+
+input[type="text"],
+input[type="date"],
+input[type="file"],
+input[type="submit"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+input[type="file"] {
+    border: none;
+}
+
+input[type="submit"],
+button[type="submit"] {
+    border-radius: 20px; /* Rounded corners for button */
+    background-color: #ffe4e1; /* Pastel pink */
+    color: #550e00;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for floating effect */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+    border: 2px solid #ddd; /* Light gray border for distinction */
+    text-decoration: none; /* Remove default link underline */
+}
+
+input[type="submit"]:hover,
+button[type="submit"]:hover {
+    background-color: #f0e68c; /* Pastel yellow on hover */
+    transform: translateY(-3px); /* Slight lift effect on hover */
+}
+
+input[type="submit"]:disabled,
+button[type="submit"]:disabled {
+    color: #550e00 !important;
+    background-color: #ffa79d; /* Reddish color for disabled button */
+}
+
+/* Row Styles */
+.row {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping of items */
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.col-md-6,
+.col-md-9,
+.col-md-3,
+.col-md-4,
+.col-md-2 {
+    padding: 0 15px;
+}
+
+.mb-3 {
+    margin-bottom: 15px;
+}
+
+.offset-md-4 {
+    margin-left: 33.333333%;
+}
+
+.offset-md-3 {
+    margin-left: 25%;
+}
+
+/* Additional Text Styles */
+p {
+    color: #333; /* Dark gray text color */
+}
+
+h2 {
+    color: #550e00; /* Reddish color for emphasis */
+    margin-top: 30px;
+}
+
+/* Zodiac Sign Disabled Field */
+input[disabled] {
+    background-color: #e9ecef; /* Light gray background for disabled field */
+    color: #495057; /* Dark gray text color */
+    cursor: not-allowed;
+}
+
+/* Profile Picture Styles */
+.profile-picture {
+    border-radius: 50%;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #4682b4; /* Steel blue */
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-primary:hover {
+    background-color: #5a9bd5; /* Lighter steel blue */
+    transform: translateY(-3px); /* Slight lift effect on hover */
+}
+
+.btn-secondary {
+    background-color: #d3d3d3; /* Light gray */
+    border: none;
+    padding: 10px 20px;
+    color: #000;
+    text-decoration: none;
+}
+
+.btn-secondary:hover {
+    background-color: #a9a9a9; /* Darker gray */
+    transform: translateY(-3px); /* Slight lift effect on hover */
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Bootstrap red */
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-danger:hover {
+    background-color: #c82333; /* Darker red */
+    transform: translateY(-3px); /* Slight lift effect on hover */
+}
+
+/* Card Styles */
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    color: #666;
+}
+
+/* Notification Styles */
+.notifications-section {
+    max-height: 400px;
+    overflow-y: auto; /* Scroll bar for notifications */
+}
+
+.notifications-section .list-group-item {
+    padding: 10px 15px;
+    border: none;
+    margin-bottom: 10px;
+}
+
+.notifications-section .list-group-item-action {
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.notifications-section .list-group-item-action:hover {
+    background-color: #f0e68c; /* Pastel yellow on hover */
+    transform: translateY(-3px); /* Slight lift effect on hover */
+}
+
+.notifications-section .list-group-item-warning {
+    background-color: #fff3cd; /* Bootstrap warning color */
+    border-color: #ffeeba; /* Bootstrap warning border */
+}
+
+/* Align text center for some elements */
+.text-center {
+    text-align: center;
+}
+
+/* Post Styles */
+.posts-section .post-card {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.posts-section .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+/* Activity Styles */
+.activities-section .activity-card {
+    width: 100%;
+}

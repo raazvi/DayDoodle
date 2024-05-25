@@ -1,0 +1,185 @@
+body {
+    background-color: #f0f8ff; /* Light pastel blue */
+    margin: 0;
+    font-family: Arial, sans-serif;
+    padding-top: 70px; /* Add padding to prevent content overlap with the navbar */
+}
+
+.navbar {
+    background-color: transparent !important; /* Transparent navbar */
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar-nav .nav-link, .navbar-brand {
+    border-radius: 20px; /* Rounded corners for bubble effect */
+    background-color: #ffe4e1; /* Pastel pink */
+    color: #000000 !important; /* Black text color with !important to override other styles */
+    margin: 5px; /* Space between bubbles */
+    padding: 1vw 2vw; /* Padding inside the bubbles (responsive) */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for floating effect */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+    border: 2px solid #ddd; /* Light gray border for distinction */
+    flex: 1; /* Allow flex items to grow and shrink */
+    text-align: center; /* Center text within the links */
+    max-width: 200px; /* Maximum width to prevent excessive scaling */
+    min-width: 100px; /* Minimum width to prevent too small scaling */
+    font-size: 1.2vw; /* Responsive font size */
+    min-font-size: 12px; /* Minimum font size to prevent text from getting too small */
+}
+
+.navbar-nav .nav-link:hover, .navbar-brand:hover {
+    background-color: #f0e68c; /* Pastel yellow on hover */
+    transform: translateY(-3px); /* Slight lift effect on hover */
+}
+
+.navbar-nav .nav-link.current-tab {
+    background-color: #ffb6c1 !important; /* More intense pastel color for current tab */
+}
+
+.navbar-brand {
+    font-size: 2vw; /* Larger font size for brand, responsive */
+    min-font-size: 16px; /* Minimum font size */
+    padding: 0.5vw 1vw; /* Padding to fit text better */
+}
+
+/* Special class for the logo */
+.navbar-logo {
+    font-size: 2vw; /* Larger font size for the logo, responsive */
+    min-font-size: 16px; /* Minimum font size to prevent text from getting too small */
+    padding: 0.5vw 1vw; /* Padding to fit the text better */
+    max-width: 250px; /* Set a maximum width for the logo */
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
+}
+
+@media (max-width: 768px) {
+    .navbar-nav .nav-link, .navbar-brand {
+        font-size: 3vw; /* Increase font size for smaller screens */
+    }
+    .navbar-logo {
+        font-size: 4vw; /* Increase font size for smaller screens */
+        max-width: 200px; /* Adjust max width for smaller screens */
+    }
+}
+
+.navbar-nav .dropdown-menu {
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for dropdown */
+}
+
+.navbar-nav .dropdown-item {
+    border-radius: 15px; /* Rounded corners for dropdown items */
+    background-color: #ecfff4; /* Pastel green */
+    color: #333; /* Dark gray text color */
+    margin: 5px; /* Space between items */
+    padding: 10px 15px; /* Padding inside the items */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+.navbar-nav .dropdown-item:hover {
+    background-color: #9bffca; /* Pastel red on hover */
+    transform: translateY(-3px); /* Slight lift effect on hover */
+}
+
+.bi-gear, .bi-question-circle {
+    font-size: 1.2em; /* Slightly larger icon size */
+    color: #333; /* Dark gray icon color */
+}
+
+/* Additional margin for the content */
+.content {
+    margin-top: 70px; /* Adjust as needed */
+}
+
+/* ==================================== */
+/* Form Style */
+.login-register {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #e2f7ff; /* Light pastel blue */
+}
+
+/* Form header */
+.login-register h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form fields */
+.login-register label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333; /* Dark gray text color */
+}
+
+.login-register input[type="text"],
+.login-register input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* Submit button */
+.login-register button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffe4e1; /* Pastel pink */
+    color: #000000 !important; /* Black text color with !important to override other styles */
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Submit button hover effect */
+.login-register button[type="submit"]:hover {
+    background-color: #f0e68c; /* Pastel yellow on hover */
+}
+
+/* Register link */
+.login-register p {
+    margin-top: 15px;
+    color: #333; /* Dark gray text color */
+}
+
+.login-register p a {
+    color: #007bff; /* Blue link color */
+    text-decoration: none;
+}
+
+.login-register p a:hover {
+    text-decoration: underline;
+}
+
+/* Warning message */
+.alert-login-register {
+    background-color: #f35757;
+    color: #000000;
+    padding: 10px;
+    border-radius: 3px;
+    margin-bottom: 15px;
+}
+
+.form-title {
+    color: #0056ba;
+    font-family: "Lucida", cursive;
+    text-align: center;
+}
+
+/* Ensure a minimum font size for responsive elements */
+@media (max-width: 768px) {
+    .navbar-nav .nav-link, .navbar-brand {
+        font-size: 3vw; /* Increase font size for smaller screens */
+    }
+    .navbar-logo {
+        font-size: 4vw; /* Increase font size for smaller screens */
+        max-width: 200px; /* Adjust max width for smaller screens */
+    }
+}

@@ -1,0 +1,214 @@
+/* General styles */
+body {
+    background-color: #f0f8ff; /* Light pastel blue */
+    margin: 0;
+    font-family: Arial, sans-serif;
+    padding-top: 70px; /* Add padding to prevent content overlap with the navbar */
+}
+
+.diary-container {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-title {
+    color: #00008b; /* Dark blue */
+    text-align: center;
+    font-family: "Lucida", cursive;
+    margin-bottom: 10px;
+}
+
+.welcome-message {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+/* Idea section */
+.idea-section {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.idea-cloud {
+    display: inline-block;
+    padding: 20px;
+    background-color: #e6f7ff; /* Light pastel cyan */
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.idea-text {
+    font-style: italic;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.idea-button {
+    border: none;
+    border-radius: 20px;
+    background-color: #ffe4e1; /* Pastel pink */
+    color: #000000;
+    padding: 10px 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.idea-button:hover {
+    background-color: #f0e68c; /* Pastel yellow on hover */
+    transform: translateY(-3px);
+}
+
+/* Diary pages section */
+.diary-pages-section {
+    margin-bottom: 30px;
+}
+
+.no-pages {
+    text-align: center;
+    color: #888888;
+}
+
+.diary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.diary-table th, .diary-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    transition: background-color 0.3s ease;
+}
+
+.diary-table th {
+    background-color: #f2f2f2;
+    color: #000000;
+}
+
+.diary-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.diary-table tr:hover {
+    background-color: #e6f7ff;
+}
+
+.diary-row {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.diary-row:hover {
+    transform: scale(1.02);
+}
+
+.page-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.page-link:hover {
+    text-decoration: underline;
+}
+
+/* New entry section */
+.new-entry-section {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #e2f7ff; /* Linen */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.new-entry-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.new-entry-form label {
+    margin-top: 10px;
+    color: #8b0000; /* Dark red */
+    font-weight: bold;
+}
+
+.new-entry-form input, .new-entry-form select, .new-entry-form textarea {
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    width: 100%;
+    max-width: 400px;
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+    background-color: #fff0f5; /* Lavender Blush */
+}
+
+.new-entry-form select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'20\' height=\'20\' viewBox=\'0 0 20 20\'%3E%3Cpath fill=\'%23000000\' d=\'M0 5l10 10L20 5z\'/%3E%3C/svg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 10px 10px;
+    padding-right: 30px;
+}
+
+.new-entry-form input[type="submit"] {
+    margin-top: 20px;
+    border-radius: 20px;
+    background-color: #ffb6c1;
+    border: 2px solid #ff69b4;/* Gold */
+    color: #000000 !important;
+    padding: 10px 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.new-entry-form input[type="submit"]:hover {
+    background-color: #ff69b4; /* Orange on hover */
+    transform: translateY(-3px);
+}
+
+/* Diary entry styles */
+.diary-entry-container {
+    margin: 20px;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #fff8dc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.entry-title {
+    color: #00008b;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Georgia', serif;
+}
+
+.entry-content {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #333333;
+}
+
+.entry-detail {
+    margin-bottom: 15px;
+}
+
+.mood-text {
+    color: #ff4500; /* Different color for the mood text */
+}
+
+/* Mood bubbles */
+.mood-select {
+    position: relative;
+}

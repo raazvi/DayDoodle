@@ -221,4 +221,16 @@ public class UserDetailsBean {
             throw new IllegalArgumentException("User not found with username: " + username);
         }
     }
+
+    public List<UserDetailsDto> findUserDetailsByUsernames(List<String> userFriends) {
+        log.info("\n Entered findUserDetailsByUsernames method for the usernames: ");
+        List<UserDetailsDto> userDetails = new ArrayList<>();
+        for (String username : userFriends) {
+            UserDetails ud = entityManager.find(UserDetails.class, username);
+            if (ud != null) {
+                userDetails.add(new UserDetailsDto(ud.getUsername(),ud.getFirstName(),ud.getLastName(),ud.getNickname(),ud.getDescription(),ud.getPronouns(),ud.getLocation(),ud.getBirthDate(),ud.getProfilePicture(),ud.getZodiacSign()));
+            }
+        }
+        return userDetails;
+    }
 }

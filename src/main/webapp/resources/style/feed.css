@@ -1,0 +1,152 @@
+body {
+    background-color: #f0f8ff; /* Light pastel blue */
+    margin: 0;
+    font-family: Arial, sans-serif;
+    padding-top: 70px; /* Add padding to prevent content overlap with the navbar */
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background-color: #ffffff; /* White background for cards */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px; /* Padding inside the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    margin-bottom: 20px; /* Space between cards */
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+    height: 450px; /* Fixed height for all cards */
+    overflow: hidden; /* Ensure content overflow is hidden */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card:hover {
+    transform: scale(1.02); /* Slightly enlarge the card on hover */
+}
+
+.card-img-top {
+    width: 100%; /* Full width */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 200px; /* Limit image height */
+    object-fit: cover; /* Maintain aspect ratio */
+    border-radius: 10px; /* Slightly rounded corners for post image */
+    margin-bottom: 10px; /* Space below the image */
+}
+
+.user-photo {
+    border-radius: 50%; /* Circular image */
+    width: 50px; /* Fixed width */
+    height: 50px; /* Fixed height */
+    object-fit: cover; /* Maintain aspect ratio */
+    margin-right: 10px; /* Space between image and text */
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Space below user info */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%; /* Ensure the card body fills the height */
+    justify-content: space-between; /* Space between elements */
+}
+
+.card-text {
+    margin: 5px 0; /* Space between text lines */
+}
+
+.btn-link {
+    border-radius: 20px; /* Rounded corners for button */
+    background-color: #ffe4e1; /* Pastel pink */
+    color: #000000 !important; /* Black text color with !important to override other styles */
+    margin: 5px; /* Space between buttons */
+    padding: 10px 15px; /* Padding inside the button */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for floating effect */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+    border: 2px solid #ddd; /* Light gray border for distinction */
+    text-decoration: none; /* Remove default link underline */
+}
+
+.btn-link:hover {
+    background-color: #f0e68c; /* Pastel yellow on hover */
+    transform: translateY(-3px); /* Slight lift effect on hover */
+}
+
+.btn-link:active {
+    background-color: #d3d3d3; /* Light gray color when pressed */
+    transform: scale(0.9); /* Make the button smaller */
+    color: #550e00 !important; /* Reddish text color */
+}
+
+.btn-link:disabled {
+    color: #550e00 !important;
+    background-color: #ffa79d; /* Reddish text color */
+}
+
+.fun-fact-cloud {
+    background-color: #ffebcd; /* Light beige color */
+    border-radius: 50px; /* Round cloud-like shape */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    text-align: center;
+    margin-bottom: 20px; /* Space below the fun fact */
+}
+
+.btn-primary-custom {
+    background-color: #ffb6c1; /* Light pink background */
+    color: #000000; /* Black text */
+    border-radius: 25px; /* More rounded corners */
+    padding: 10px 20px; /* Padding for larger button */
+    border: 2px solid #ff69b4; /* Hot pink border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+    display: block; /* Block level for centering */
+    margin: 20px auto; /* Centering the button */
+    text-decoration: none; /* Remove link underline */
+}
+
+.btn-primary-custom:hover {
+    background-color: #ff69b4; /* Hot pink on hover */
+    color: #ffffff; /* White text on hover */
+    transform: translateY(-3px); /* Slight lift effect on hover */
+}
+
+.btn-primary-custom:active {
+    background-color: #ff1493; /* Deep pink when pressed */
+    transform: scale(0.95); /* Slightly smaller when pressed */
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+    .card {
+        padding: 10px;
+        height: auto; /* Auto height for smaller screens */
+    }
+
+    .card-img-top {
+        width: 100%;
+    }
+
+    .user-photo {
+        width: 30px;
+        height: 30px;
+    }
+
+    .btn-link {
+        padding: 5px 10px;
+    }
+
+    .btn-primary-custom {
+        padding: 8px 15px;
+        margin: 10px auto;
+    }
+}

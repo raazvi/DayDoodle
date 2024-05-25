@@ -7,75 +7,93 @@
         <c:if test="${not empty friendRequestsReceived}">
             <h2>Friend Requests:</h2>
             <div class="container text-center">
-                <c:forEach var="request" items="${friendRequestsReceived}">
-                    <div class="row">
-                        <div class="col">
-                                ${request.requester.username} sent you a friend request.
-                        </div>
-                        <div class="col">
-                            <form action="${pageContext.request.contextPath}/UserProfile" method="GET">
-                                <input type="hidden" name="username" value="${request.requester.username}">
-                                <button type="submit">View Profile</button>
-                            </form>
-                            <form action="${pageContext.request.contextPath}/RespondFriendRequest" method="GET">
-                                <input type="hidden" name="username" value="${request.requester.username}">
-                                <input type="hidden" name="response" value="accept">
-                                <input type="hidden" name="frReqId" value="${request.id}">
-                                <button type="submit">Accept</button>
-                            </form>
-                            <form action="${pageContext.request.contextPath}/RespondFriendRequest?response=decline&frReqId=${request.id}&servlet=ViewFriends&username=${request.requester.username}" method="GET">
-                                <input type="hidden" name="username" value="${request.requester.username}">
-                                <input type="hidden" name="response" value="decline">
-                                <input type="hidden" name="frReqId" value="${request.id}">
-                                <button type="submit">Reject</button>
-                            </form>
-                        </div>
-                    </div>
-                </c:forEach>
+                <div class="friend-request-container">
+                    <table>
+                        <c:forEach var="request" items="${friendRequestsReceived}">
+                            <tr>
+                                <div class="friend-request-item">
+                                    <td>
+                                        <span>${request.requester.username}</span>
+                                    </td>
+                                    <td>
+                                        <form action="${pageContext.request.contextPath}/UserProfile" method="GET">
+                                            <input type="hidden" name="username" value="${request.requester.username}">
+                                            <button class="styled-button" type="submit">View Profile</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="${pageContext.request.contextPath}/RespondFriendRequest" method="GET">
+                                            <input type="hidden" name="username" value="${request.requester.username}">
+                                            <input type="hidden" name="response" value="accept">
+                                            <input type="hidden" name="frReqId" value="${request.id}">
+                                            <button class="styled-button" type="submit">Accept</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="${pageContext.request.contextPath}/RespondFriendRequest?response=decline&frReqId=${request.id}&servlet=ViewFriends&username=${request.requester.username}" method="GET">
+                                            <input type="hidden" name="username" value="${request.requester.username}">
+                                            <input type="hidden" name="response" value="decline">
+                                            <input type="hidden" name="frReqId" value="${request.id}">
+                                            <button class="styled-button" type="submit">Reject</button>
+                                        </form>
+                                    </td>
+                                </div>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </div>
             </div>
         </c:if>
 
         <c:choose>
             <c:when test="${empty friends}">
-                <p>You have no friends yet :(</p>
-                <p>Search for users using the search bar below:</p>
-                <form id="searchForm" onsubmit="return false;">
-                    <label for="keyword">Search by username:</label>
-                    <input type="text" id="keyword" name="keyword" oninput="searchUser()">
-                    <button type="submit">Search</button>
-                </form>
+                <h2>You have no friends yet :(</h2>
+                <h2>Search for users using the search bar below:</h2>
+                <div class="form-container">
+                    <form id="searchForm" onsubmit="return false;">
+                        <label for="keyword">Search by username:</label>
+                        <input type="text" id="keyword" name="keyword" oninput="searchUser()">
+                        <!--<button type="submit">Search</button>-->
+                    </form>
+                </div>
                 <!-- Suggestions div -->
                 <div id="suggestions"></div>
             </c:when>
             <c:otherwise>
-                <p>Search for more friends:</p>
-                <form id="searchForm" onsubmit="return false;">
-                    <label for="keyword">Search by username:</label>
-                    <input type="text" id="keyword" name="keyword" oninput="searchUser()">
-                    <button type="submit">Search</button>
-                </form>
+                <h2>Search for more friends:</h2>
+                <div class="form-container">
+                    <form id="searchForm" onsubmit="return false;">
+                        <label for="keyword">Search by username:</label>
+                        <input type="text" id="keyword" name="keyword" oninput="searchUser()">
+                        <!--<button type="submit">Search</button>-->
+                    </form>
+                </div>
                 <!-- Suggestions div -->
                 <div id="suggestions"></div>
                 <h2>Your friends:</h2>
                 <div class="container text-center">
-                    <c:forEach var="friend" items="${friends}">
-                        <div class="row">
-                            <div class="col">
-                                    ${friend.friend.username}
-                            </div>
-                            <div class="col">
-                                <form action="${pageContext.request.contextPath}/UserProfile" method="GET">
-                                    <input type="hidden" name="username" value="${friend.friend.username}">
-                                    <button type="submit">View Profile</button>
-                                </form>
-                                <form action="${pageContext.request.contextPath}/DeleteFriend" method="GET">
-                                    <input type="hidden" name="username" value="${friend.friend.username}">
-                                    <input type="hidden" name="friendshipId" value="${friend.id}">
-                                    <button type="submit">Delete Friend</button>
-                                </form>
-                            </div>
-                        </div>
-                    </c:forEach>
+                    <table>
+                        <tbody>
+                        <c:forEach var="friend" items="${friends}">
+                            <tr>
+                                <td>${friend.friend.username}</td>
+                                <td>
+                                    <form action="${pageContext.request.contextPath}/UserProfile" method="GET">
+                                        <input type="hidden" name="username" value="${friend.friend.username}">
+                                        <button type="submit">View Profile</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="${pageContext.request.contextPath}/DeleteFriend" method="GET">
+                                        <input type="hidden" name="username" value="${friend.friend.username}">
+                                        <input type="hidden" name="friendshipId" value="${friend.id}">
+                                        <button type="submit">Delete Friend</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
                 </div>
             </c:otherwise>
         </c:choose>
@@ -115,5 +133,4 @@
             }
         }
     </script>
-
 </t:pageTemplate>

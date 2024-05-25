@@ -41,7 +41,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <p> The zodiac sign is filled automatically based on your birthday!</p>
+                    <p>The zodiac sign is filled automatically based on your birthday!</p>
                     <label for="zodiacSign">Zodiac Sign</label>
                     <input type="text" class="form-control" id="zodiacSign" name="zodiacSign" placeholder="Zodiac Sign" disabled>
                 </div>
@@ -60,12 +60,11 @@
             <input type="hidden" name="username" value="${sessionScope.user.username}">
             <input type="hidden" id="imageFormat" name="imageFormat">
             <!-- Submit Button -->
-            <input type="submit" value="Done" class="btn btn-primary">
+            <input type="submit" value="Done" class="btn btn-primary submit-btn">
         </form>
 
-        <p> Even though not all fields are mandatory, you have to at least let us know your full name and your birthday (those fields are marked with a star :D )</p>
-        <h2> P.S.: You'll be able to edit these details later by clicking on your profile, so don't stress out!</h2>
-
+        <p>Even though not all fields are mandatory, you have to at least let us know your full name and your birthday (those fields are marked with a star :D )</p>
+        <h2>P.S.: You'll be able to edit these details later by clicking on your profile, so don't stress out!</h2>
     </div>
 </t:pageTemplate>
 

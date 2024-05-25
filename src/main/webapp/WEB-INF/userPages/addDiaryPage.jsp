@@ -2,42 +2,49 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:pageTemplate pageTitle="Add a page to your diary">
-    <h1>Welcome to my app!</h1>
-    <form action="${pageContext.request.contextPath}/AddDiaryPage" method="post">
-        <label for="date">Date:</label>
-        <input type="date" id="date" name="date"><br><br>
+    <div class="new-entry-section">
+        <h3 class="welcome-title">Write a new page...</h3>
+        <form class="new-entry-form" action="${pageContext.request.contextPath}/AddDiaryPage" method="post">
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date"><br>
 
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" required><br><br>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required><br>
 
-        <label for="moodCategory">How did you feel:</label>
-        <select id="moodCategory" name="moodCategory" onchange="populateMoodValues(this)" required>
-            <option value="" selected disabled>Select a Mood Category</option>
-            <option value="Happy">Happy</option>
-            <option value="Sad">Sad</option>
-            <option value="Disgusted">Disgusted</option>
-            <option value="Angry">Angry</option>
-            <option value="Fearful">Fearful</option>
-            <option value="Bad">Bad</option>
-            <option value="Surprised">Surprised</option>
-        </select><br><br>
+            <label for="moodCategory">How did you feel:</label>
+            <div class="mood-select">
+                <select id="moodCategory" name="moodCategory" onchange="populateMoodValues(this)" required>
+                    <option value="" selected disabled>Select a Mood Category</option>
+                    <option value="Happy">Happy</option>
+                    <option value="Sad">Sad</option>
+                    <option value="Disgusted">Disgusted</option>
+                    <option value="Angry">Angry</option>
+                    <option value="Fearful">Fearful</option>
+                    <option value="Bad">Bad</option>
+                    <option value="Surprised">Surprised</option>
+                </select>
+                <div id="moodBubble" class="mood-bubble"></div>
+            </div><br>
 
-        <label for="moodValue">Be more specific:</label>
-        <select id="moodValue" name="moodValue" required>
-            <option value="" selected disabled>Select a Mood Value</option>
-        </select><br><br>
+            <label for="moodValue">Be more specific:</label>
+            <select id="moodValue" name="moodValue" required>
+                <option value="" selected disabled>Select a Mood Value</option>
+            </select><br>
 
-        <label for="moreDetails">Fill in with more details about your day:</label><br>
-        <textarea id="moreDetails" name="moreDetails" rows="4" cols="50" required></textarea><br><br>
+            <label for="moreDetails">Fill in with more details about your day:</label><br>
+            <textarea id="moreDetails" name="moreDetails" rows="4" cols="50" required></textarea><br>
 
-        <input type="submit" value="Submit">
-    </form>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </t:pageTemplate>
 
 <script>
     function populateMoodValues(select) {
         var moodValueSelect = document.getElementById("moodValue");
+        var moodBubble = document.getElementById("moodBubble");
         moodValueSelect.innerHTML = "";
+        moodBubble.style.display = 'none';
 
         var moodCategory = select.value;
         var moodValues = {
@@ -57,6 +64,9 @@
                 option.text = value;
                 moodValueSelect.add(option);
             });
+
+            moodBubble.textContent = moodCategory;
+            moodBubble.style.display = 'inline-block';
         }
     }
 </script>

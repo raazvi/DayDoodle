@@ -5,66 +5,68 @@
 <c:set var="userRole" value="${sessionScope.user != null ? sessionScope.user.role : ''}" />
 
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <nav class="navbar navbar-expand-md fixed-top bg-dark">
         <div class="container-fluid">
+            <!-- Burger menu toggle button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <!-- Left side menu items -->
-            <ul class="navbar-nav flex-fill">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Feed"> Feed </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Diary"> Diary </a>
-                </li>
-                <!-- Added Calendar link -->
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/ViewCalendars"> Calendars </a>
-                </li>
-                <!-- Added Friends link -->
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/ViewFriends"> Friends </a>
-                </li>
-            </ul>
-            <!-- Centered logo with link to home -->
-            <c:choose>
-                <c:when test="${empty sessionScope.user}">
-                    <a class="navbar-brand mx-auto" href="${pageContext.request.contextPath}">DayDoodle</a>
-                </c:when>
-                <c:otherwise>
-                    <a class="navbar-brand mx-auto" href="${pageContext.request.contextPath}/Feed">DayDoodle</a>
-                </c:otherwise>
-            </c:choose>
-            <!-- Right side menu items -->
-            <ul class="navbar-nav flex-fill justify-content-end">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Profile"> ${sessionScope.user.username} </a>
-                </li>
-                <!-- Dropdown for Admin Settings (conditional) -->
-                <c:if test="${userRole eq 'admin'}">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Admin Settings
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="adminDropdown">
-                            <!--<li><a class="dropdown-item" href="${pageContext.request.contextPath}/Users">Users</a></li>-->
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Stats">Stats</a></li>
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/ManageActivities">Manage Activities</a></li>
-                        </ul>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav flex-fill">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Feed"> Feed </a>
                     </li>
-                </c:if>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Settings">
-                        <i class="bi bi-gear"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Help">
-                        <i class="bi bi-question-circle"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Logout"> Log Out </a>
-                </li>
-            </ul>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Diary"> Diary </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/ViewCalendars"> Calendars </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/ViewFriends"> Friends </a>
+                    </li>
+                </ul>
+                <!-- Centered logo with link to home -->
+                <c:choose>
+                    <c:when test="${empty sessionScope.user}">
+                        <a class="navbar-brand navbar-logo mx-auto" href="${pageContext.request.contextPath}">DayDoodle</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a class="navbar-brand navbar-logo mx-auto" href="${pageContext.request.contextPath}/Feed">DayDoodle</a>
+                    </c:otherwise>
+                </c:choose>
+                <!-- Right side menu items -->
+                <ul class="navbar-nav flex-fill justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Profile"> ${sessionScope.user.username} </a>
+                    </li>
+                    <c:if test="${userRole eq 'admin'}">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Admin Settings
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Stats">Stats</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/ManageActivities">Manage Activities</a></li>
+                            </ul>
+                        </li>
+                    </c:if>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Settings">
+                            <i class="bi bi-gear"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Help">
+                            <i class="bi bi-question-circle"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Logout"> Log Out </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 </header>

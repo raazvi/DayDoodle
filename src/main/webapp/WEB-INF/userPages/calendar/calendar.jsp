@@ -5,52 +5,24 @@
 <c:set var="currentUser" value="${sessionScope.user.username}" />
 
 <t:pageTemplate pageTitle="Calendar">
-    <style>
-        #calendar {
-            max-width: 100%;
-            margin: 0 auto;
-        }
-        .user-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        .user-list li {
-            display: inline-block;
-            margin-right: 10px;
-            padding: 5px;
-            border-radius: 5px;
-            color: #fff;
-        }
-    </style>
-    <!-- Include Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
     <div class="container mt-3">
-        <div class="row mt-3">
-            <div class="col mt-3">
-                <a href="${pageContext.request.contextPath}/AddEvent?calendarId=${calendar.id}" data-toggle="tooltip" data-placement="bottom" title="Click on the button to add a new event to the current calendar">Add an event to your calendar</a>
-            </div>
+        <div class="button-container">
+            <a href="${pageContext.request.contextPath}/AddEvent?calendarId=${calendar.id}" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Click on the button to add a new event to the current calendar">Add an event to your calendar</a>
             <c:if test="${ownedByThisUser eq true}">
-                <div class="col mt-3">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#addUserModal">Add a user to the calendar</button>
-                </div>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#addUserModal">Add a user to the calendar</button>
             </c:if>
         </div>
-        <div class="row mt-3">
-            <div class="col">
-                <h4>Users in this calendar:</h4>
-                <ul class="user-list">
-                    <c:forEach var="userInCalendar" items="${usersInCalendar}">
-                        <li style="background-color: ${userColors[userInCalendar.username]}">${userInCalendar.username}</li>
-                    </c:forEach>
-                </ul>
-            </div>
+        <div class="user-list-container">
+            <h4>Users in this calendar:</h4>
+            <ul class="user-list">
+                <c:forEach var="userInCalendar" items="${usersInCalendar}">
+                    <li style="background-color: ${userColors[userInCalendar.username]}">${userInCalendar.username}</li>
+                </c:forEach>
+            </ul>
         </div>
-        <div class="row mt-3">
-            <div class="col">
-                <h3 class="text-center">Your calendar: ${calendar.name}</h3>
-                <div id="calendar"></div>
-            </div>
+        <div class="calendar-container">
+            <h3 class="text-center">Your calendar: ${calendar.name}</h3>
+            <div id="calendar"></div>
         </div>
     </div>
 
