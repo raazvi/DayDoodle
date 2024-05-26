@@ -8,6 +8,8 @@ body {
 
 .container {
     margin-top: 50px;
+    display: flex;
+    justify-content: center;
 }
 
 /* Centering Main Content */
@@ -16,14 +18,86 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
-.text-center {
+.profile-container {
+    background-color: #fff; /* White background for the container */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    max-width: 600px;
+    width: 100%;
     text-align: center;
 }
 
 h3, h4 {
     color: #333; /* Dark gray text color */
+}
+
+/* Profile Info Styles */
+.profile-info {
+    color: #333; /* Dark gray text color */
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+/* Profile Picture Styles */
+.profile-picture-wrapper {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-picture {
+    border-radius: 50%;
+    width: 100px; /* Smaller size for the profile picture */
+    height: 100px;
+    object-fit: cover;
+}
+
+/* Button Styles */
+input[type="submit"],
+button[type="submit"],
+.btn-primary,
+.btn-secondary {
+    border-radius: 20px; /* Rounded corners for button */
+    background-color: #ffe4e1; /* Pastel pink */
+    color: #550e00;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for floating effect */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+    border: 2px solid #ddd; /* Light gray border for distinction */
+    text-decoration: none; /* Remove default link underline */
+}
+
+input[type="submit"]:hover,
+button[type="submit"]:hover,
+.btn-primary:hover,
+.btn-secondary:hover {
+    background-color: #f0e68c; /* Pastel yellow on hover */
+    transform: translateY(-3px); /* Slight lift effect on hover */
+}
+
+input[type="submit"]:disabled,
+button[type="submit"]:disabled {
+    color: #550e00 !important;
+    background-color: #ffa79d; /* Reddish color for disabled button */
+}
+
+/* Additional Text Styles */
+p {
+    color: #333; /* Dark gray text color */
+}
+
+h2 {
+    color: #550e00; /* Reddish color for emphasis */
+    margin-top: 30px;
 }
 
 /* Form Styles */
@@ -50,34 +124,6 @@ textarea {
 
 input[type="file"] {
     border: none;
-}
-
-input[type="submit"],
-button[type="submit"] {
-    border-radius: 20px; /* Rounded corners for button */
-    background-color: #ffe4e1; /* Pastel pink */
-    color: #550e00;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    padding: 10px 20px;
-    margin-top: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for floating effect */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
-    border: 2px solid #ddd; /* Light gray border for distinction */
-    text-decoration: none; /* Remove default link underline */
-}
-
-input[type="submit"]:hover,
-button[type="submit"]:hover {
-    background-color: #f0e68c; /* Pastel yellow on hover */
-    transform: translateY(-3px); /* Slight lift effect on hover */
-}
-
-input[type="submit"]:disabled,
-button[type="submit"]:disabled {
-    color: #550e00 !important;
-    background-color: #ffa79d; /* Reddish color for disabled button */
 }
 
 /* Row Styles */
@@ -108,66 +154,11 @@ button[type="submit"]:disabled {
     margin-left: 25%;
 }
 
-/* Additional Text Styles */
-p {
-    color: #333; /* Dark gray text color */
-}
-
-h2 {
-    color: #550e00; /* Reddish color for emphasis */
-    margin-top: 30px;
-}
-
 /* Zodiac Sign Disabled Field */
 input[disabled] {
     background-color: #e9ecef; /* Light gray background for disabled field */
     color: #495057; /* Dark gray text color */
     cursor: not-allowed;
-}
-
-/* Profile Picture Styles */
-.profile-picture {
-    border-radius: 50%;
-}
-
-/* Button Styles */
-.btn-primary {
-    background-color: #4682b4; /* Steel blue */
-    border: none;
-    padding: 10px 20px;
-    color: #fff;
-    text-decoration: none;
-}
-
-.btn-primary:hover {
-    background-color: #5a9bd5; /* Lighter steel blue */
-    transform: translateY(-3px); /* Slight lift effect on hover */
-}
-
-.btn-secondary {
-    background-color: #d3d3d3; /* Light gray */
-    border: none;
-    padding: 10px 20px;
-    color: #000;
-    text-decoration: none;
-}
-
-.btn-secondary:hover {
-    background-color: #a9a9a9; /* Darker gray */
-    transform: translateY(-3px); /* Slight lift effect on hover */
-}
-
-.btn-danger {
-    background-color: #dc3545; /* Bootstrap red */
-    border: none;
-    padding: 10px 20px;
-    color: #fff;
-    text-decoration: none;
-}
-
-.btn-danger:hover {
-    background-color: #c82333; /* Darker red */
-    transform: translateY(-3px); /* Slight lift effect on hover */
 }
 
 /* Card Styles */
@@ -217,11 +208,6 @@ input[disabled] {
 .notifications-section .list-group-item-warning {
     background-color: #fff3cd; /* Bootstrap warning color */
     border-color: #ffeeba; /* Bootstrap warning border */
-}
-
-/* Align text center for some elements */
-.text-center {
-    text-align: center;
 }
 
 /* Post Styles */
