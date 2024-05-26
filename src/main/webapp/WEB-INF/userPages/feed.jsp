@@ -24,13 +24,14 @@
             <c:when test="${not empty posts}">
                 <div class="row">
                     <c:forEach var="post" items="${posts}">
-                        <div class="col-md-4">
+                        <div class="col-md-4 d-flex align-items-stretch">
                             <div class="card mb-4 box-shadow">
                                 <div class="card-body">
                                     <!-- Display profile picture and user name -->
                                     <div class="user-info">
-                                        <c:if test="${not empty userDetails.profilePicture}">
-                                            <img src="data:image/${userDetails.profilePicture.imageFormat};base64,${userDetails.profilePicture.base64ImageData}" alt="Profile Picture" class="user-photo">
+                                        <c:set var="profilePicture" value="${friendsProfilePicturesMap[post.author.username]}"/>
+                                        <c:if test="${not empty profilePicture}">
+                                            <img src="data:image/${profilePicture.imageFormat};base64,${profilePicture.base64ImageData}" alt="Profile Picture" class="user-photo">
                                         </c:if>
                                         <p class="card-text mb-0">${post.author.username}</p>
                                     </div>
@@ -47,37 +48,38 @@
                                     </c:if>
 
                                     <!-- Reaction and comment buttons -->
-                                    <br>
-                                    <c:set var="userReactedLike" value="false"/>
-                                    <c:set var="userReactedStar" value="false"/>
-                                    <c:forEach var="reaction" items="${post.reactions}">
-                                        <c:if test="${reaction.user.username eq sessionScope.user.username}">
-                                            <c:choose>
-                                                <c:when test="${reaction.reactionType eq 'LIKE'}">
-                                                    <c:set var="userReactedLike" value="true"/>
-                                                </c:when>
-                                                <c:when test="${reaction.reactionType eq 'STAR'}">
-                                                    <c:set var="userReactedStar" value="true"/>
-                                                </c:when>
-                                            </c:choose>
-                                        </c:if>
-                                    </c:forEach>
+                                    <div class="reaction-buttons">
+                                        <c:set var="userReactedLike" value="false"/>
+                                        <c:set var="userReactedStar" value="false"/>
+                                        <c:forEach var="reaction" items="${post.reactions}">
+                                            <c:if test="${reaction.user.username eq sessionScope.user.username}">
+                                                <c:choose>
+                                                    <c:when test="${reaction.reactionType eq 'LIKE'}">
+                                                        <c:set var="userReactedLike" value="true"/>
+                                                    </c:when>
+                                                    <c:when test="${reaction.reactionType eq 'STAR'}">
+                                                        <c:set var="userReactedStar" value="true"/>
+                                                    </c:when>
+                                                </c:choose>
+                                            </c:if>
+                                        </c:forEach>
 
-                                    <c:choose>
-                                        <c:when test="${userReactedStar}">
-                                            <button class="btn-link" disabled>Star</button>
-                                            <a href="${pageContext.request.contextPath}/PostReact?postId=${post.id}&reaction=like" class="btn-link">Like</a>
-                                        </c:when>
-                                        <c:when test="${userReactedLike}">
-                                            <a href="${pageContext.request.contextPath}/PostReact?postId=${post.id}&reaction=star" class="btn-link">Star</a>
-                                            <button class="btn-link" disabled>Like</button>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <a href="${pageContext.request.contextPath}/PostReact?postId=${post.id}&reaction=star" class="btn-link">Star</a>
-                                            <a href="${pageContext.request.contextPath}/PostReact?postId=${post.id}&reaction=like" class="btn-link">Like</a>
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <a href="${pageContext.request.contextPath}/ViewPost?postId=${post.id}" class="btn-link">Comment</a>
+                                        <c:choose>
+                                            <c:when test="${userReactedStar}">
+                                                <button class="btn-link" disabled><i class="fas fa-star"></i></button>
+                                                <a href="${pageContext.request.contextPath}/PostReact?postId=${post.id}&reaction=like" class="btn-link"><i class="fas fa-thumbs-up"></i></a>
+                                            </c:when>
+                                            <c:when test="${userReactedLike}">
+                                                <a href="${pageContext.request.contextPath}/PostReact?postId=${post.id}&reaction=star" class="btn-link"><i class="fas fa-star"></i></a>
+                                                <button class="btn-link" disabled><i class="fas fa-thumbs-up"></i></button>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <a href="${pageContext.request.contextPath}/PostReact?postId=${post.id}&reaction=star" class="btn-link"><i class="fas fa-star"></i></a>
+                                                <a href="${pageContext.request.contextPath}/PostReact?postId=${post.id}&reaction=like" class="btn-link"><i class="fas fa-thumbs-up"></i></a>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <a href="${pageContext.request.contextPath}/ViewPost?postId=${post.id}" class="btn-link"><i class="fas fa-comment"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

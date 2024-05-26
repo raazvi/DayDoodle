@@ -1,10 +1,11 @@
 package com.daydoodle.daydoodle.servlets;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.daydoodle.daydoodle.common.*;
 import com.daydoodle.daydoodle.ejb.*;
-import com.daydoodle.daydoodle.entities.CustomActivity;
 import com.daydoodle.daydoodle.entities.Picture;
 import com.daydoodle.daydoodle.entities.User;
 import jakarta.inject.Inject;
@@ -42,25 +43,24 @@ public class Feed extends HttpServlet {
         User user = (User) session.getAttribute("user");
         List<PostDto> allPosts = postBean.findAllPosts();
 
-        List<FriendshipDto> userFriendships = friendshipBean.findFriendshipsByUser(user.getUsername(),friendshipBean.findAllFriendships());
-        List<String> userFriends=friendshipBean.findUserFriends(user.getUsername(),userFriendships);
+        List<FriendshipDto> userFriendships = friendshipBean.findFriendshipsByUser(user.getUsername(), friendshipBean.findAllFriendships());
+        List<String> userFriends = friendshipBean.findUserFriends(user.getUsername(), userFriendships);
 
-        List<PostDto> friendsPosts=postBean.findFriendsPosts(userFriends,allPosts);
-        List<UserDetailsDto> findUserDetails=userDetailsBean.findUserDetailsByUsernames(userFriends);
+        List<PostDto> friendsPosts = postBean.findFriendsPosts(userFriends, allPosts);
+        List<UserDetailsDto> friendsUserDetails = userDetailsBean.findUserDetailsByUsernames(userFriends);
 
-        FunFactDto funFact = funFactBean.getRandomFunFact();
-        List<UserDetailsDto> userDetails= userDetailsBean.findUserDetailsByUsernames(userFriends);
-        List<PictureDto> friendsProfilePictures=new ArrayList<>();
-        for(UserDetailsDto ud:userDetails) {
-            friendsProfilePictures.add(new PictureDto(ud.getProfilePicture().getId(),ud.getProfilePicture().getImageData(),ud.getProfilePicture().getImageName(),ud.getProfilePicture().getImageFormat()));
+        // Create a map for friend's username to profile picture
+        Map<String, Picture> friendsProfilePicturesMap = new HashMap<>();
+        for (UserDetailsDto ud : friendsUserDetails) {
+            friendsProfilePicturesMap.put(ud.getUsername(), ud.getProfilePicture());
         }
 
-        // Mapat poza la username si apoi trimis pe feed unde se afiseaza poza in functie de username
+        FunFactDto funFact = funFactBean.getRandomFunFact();
 
         req.setAttribute("currentUser", user);
-        req.setAttribute("userDetails", userDetails);
+        req.setAttribute("friendsProfilePicturesMap", friendsProfilePicturesMap);
         req.setAttribute("funFact", funFact);
-        req.setAttribute("posts",friendsPosts);
-        req.getRequestDispatcher("/WEB-INF/userPages/feed.jsp").forward(req,resp);
+        req.setAttribute("posts", friendsPosts);
+        req.getRequestDispatcher("/WEB-INF/userPages/feed.jsp").forward(req, resp);
     }
 }

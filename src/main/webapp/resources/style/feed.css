@@ -60,8 +60,10 @@ body {
     justify-content: space-between; /* Space between elements */
 }
 
-.card-text {
-    margin: 5px 0; /* Space between text lines */
+.reaction-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .btn-link {
@@ -74,6 +76,10 @@ body {
     transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
     border: 2px solid #ddd; /* Light gray border for distinction */
     text-decoration: none; /* Remove default link underline */
+}
+
+.btn-link i {
+    margin-right: 5px; /* Space between icon and text */
 }
 
 .btn-link:hover {
@@ -150,3 +156,108 @@ body {
         margin: 10px auto;
     }
 }
+
+.post-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.reactions-container {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.reactions-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.reactions-list li {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.reaction-photo {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.reactions-list li i {
+    margin-left: 5px;
+}
+
+.comments-container {
+    margin-top: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+    text-align: left;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.comment-content {
+    margin-bottom: 5px;
+}
+
+.comment-date {
+    font-size: 0.8em;
+    color: #555;
+}
+
+.comments-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.comments-list li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-photo {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.comment-form-container {
+    margin-top: 20px;
+}
+
+.comment-form-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comment-form-container label {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.comment-form-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: vertical;
+}
+
