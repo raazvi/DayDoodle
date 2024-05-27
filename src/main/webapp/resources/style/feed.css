@@ -2,15 +2,37 @@ body {
     background-color: #f0f8ff; /* Light pastel blue */
     margin: 0;
     font-family: Arial, sans-serif;
-    padding-top: 70px; /* Add padding to prevent content overlap with the navbar */
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center; /* Center the container horizontally */
+    align-items: center; /* Center the container vertically */
 }
 
-.container {
+.outer-container {
+    display: flex;
+    justify-content: center; /* Center the inner container horizontally */
+    align-items: center; /* Center the inner container vertically */
+    height: 100%; /* Full height */
+    width: 100%; /* Full width */
+}
+
+.inner-container {
     max-width: 1200px;
-    margin: auto;
+    width: 100%;
     padding: 20px;
+    background-color: #ffffff; /* White background for container */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
 }
 
+.post-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center contents inside the container */
+    align-items: center; /* Center contents inside the container */
+}
+
+/* The rest of your existing CSS styles */
 .card {
     background-color: #ffffff; /* White background for cards */
     border-radius: 15px; /* Rounded corners */
@@ -260,4 +282,3 @@ body {
     border: 1px solid #ccc;
     resize: vertical;
 }
-

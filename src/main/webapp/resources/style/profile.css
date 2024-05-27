@@ -1,15 +1,13 @@
 /* General Styles */
 body {
-    background-color: #f0f8ff; /* Light pastel blue */
+    background-color: #f0f8ff;
     margin: 0;
     font-family: Arial, sans-serif;
-    padding-top: 70px; /* Add padding to prevent content overlap with the navbar */
+    padding-top: 70px;
 }
 
 .container {
     margin-top: 50px;
-    display: flex;
-    justify-content: center;
 }
 
 /* Centering Main Content */
@@ -18,86 +16,17 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-}
-
-.profile-container {
-    background-color: #fff; /* White background for the container */
+    background-color: #f3f3f3;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
-    max-width: 600px;
-    width: 100%;
+}
+
+.text-center {
     text-align: center;
 }
 
 h3, h4 {
-    color: #333; /* Dark gray text color */
-}
-
-/* Profile Info Styles */
-.profile-info {
-    color: #333; /* Dark gray text color */
-    font-size: 18px;
-    margin: 10px 0;
-}
-
-/* Profile Picture Styles */
-.profile-picture-wrapper {
-    margin: 20px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.profile-picture {
-    border-radius: 50%;
-    width: 100px; /* Smaller size for the profile picture */
-    height: 100px;
-    object-fit: cover;
-}
-
-/* Button Styles */
-input[type="submit"],
-button[type="submit"],
-.btn-primary,
-.btn-secondary {
-    border-radius: 20px; /* Rounded corners for button */
-    background-color: #ffe4e1; /* Pastel pink */
-    color: #550e00;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    padding: 10px 20px;
-    margin-top: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for floating effect */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
-    border: 2px solid #ddd; /* Light gray border for distinction */
-    text-decoration: none; /* Remove default link underline */
-}
-
-input[type="submit"]:hover,
-button[type="submit"]:hover,
-.btn-primary:hover,
-.btn-secondary:hover {
-    background-color: #f0e68c; /* Pastel yellow on hover */
-    transform: translateY(-3px); /* Slight lift effect on hover */
-}
-
-input[type="submit"]:disabled,
-button[type="submit"]:disabled {
-    color: #550e00 !important;
-    background-color: #ffa79d; /* Reddish color for disabled button */
-}
-
-/* Additional Text Styles */
-p {
-    color: #333; /* Dark gray text color */
-}
-
-h2 {
-    color: #550e00; /* Reddish color for emphasis */
-    margin-top: 30px;
+    color: #333;
 }
 
 /* Form Styles */
@@ -106,7 +35,7 @@ form {
 }
 
 label {
-    color: #333; /* Dark gray text color */
+    color: #333;
 }
 
 input[type="text"],
@@ -126,10 +55,38 @@ input[type="file"] {
     border: none;
 }
 
+input[type="submit"],
+button[type="submit"] {
+    border-radius: 20px;
+    background-color: #ffe4e1;
+    color: #550e00;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: 2px solid #ddd;
+    text-decoration: none;
+}
+
+input[type="submit"]:hover,
+button[type="submit"]:hover {
+    background-color: #f0e68c;
+    transform: translateY(-3px);
+}
+
+input[type="submit"]:disabled,
+button[type="submit"]:disabled {
+    color: #550e00 !important;
+    background-color: #ffa79d;
+}
+
 /* Row Styles */
 .row {
     display: flex;
-    flex-wrap: wrap; /* Allow wrapping of items */
+    flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 20px;
 }
@@ -154,11 +111,90 @@ input[type="file"] {
     margin-left: 25%;
 }
 
+/* Additional Text Styles */
+p {
+    color: #333;
+}
+
+h2 {
+    color: #550e00;
+    margin-top: 30px;
+}
+
 /* Zodiac Sign Disabled Field */
 input[disabled] {
-    background-color: #e9ecef; /* Light gray background for disabled field */
-    color: #495057; /* Dark gray text color */
+    background-color: #e9ecef;
+    color: #495057;
     cursor: not-allowed;
+}
+
+/* Profile Picture Styles */
+.profile-picture-fixed {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.profile-picture{
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.profile-picture-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    padding: 75px;
+}
+
+/* Profile Card Styles */
+.profile-card {
+    width: 400px; /* Adjust width as needed */
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #4682b4;
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-primary:hover {
+    background-color: #5a9bd5;
+    transform: translateY(-3px);
+}
+
+.btn-secondary {
+    background-color: #d3d3d3;
+    border: none;
+    padding: 10px 20px;
+    color: #000;
+    text-decoration: none;
+}
+
+.btn-secondary:hover {
+    background-color: #a9a9a9;
+    transform: translateY(-3px);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    transform: translateY(-3px);
 }
 
 /* Card Styles */
@@ -185,7 +221,7 @@ input[disabled] {
 /* Notification Styles */
 .notifications-section {
     max-height: 400px;
-    overflow-y: auto; /* Scroll bar for notifications */
+    overflow-y: auto;
 }
 
 .notifications-section .list-group-item {
@@ -201,13 +237,18 @@ input[disabled] {
 }
 
 .notifications-section .list-group-item-action:hover {
-    background-color: #f0e68c; /* Pastel yellow on hover */
-    transform: translateY(-3px); /* Slight lift effect on hover */
+    background-color: #f0e68c;
+    transform: translateY(-3px);
 }
 
 .notifications-section .list-group-item-warning {
-    background-color: #fff3cd; /* Bootstrap warning color */
-    border-color: #ffeeba; /* Bootstrap warning border */
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+
+/* Align text center for some elements */
+.text-center {
+    text-align: center;
 }
 
 /* Post Styles */
@@ -221,7 +262,19 @@ input[disabled] {
     max-width: 50%;
 }
 
+.posts-section .d-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
 /* Activity Styles */
 .activities-section .activity-card {
     width: 100%;
+}
+
+/* Background color for the main content */
+.bg-light-gray {
+    background-color: #d3d3d3;
+    padding: 20px;
+    border-radius: 10px;
 }

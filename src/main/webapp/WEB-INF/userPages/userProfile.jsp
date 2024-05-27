@@ -2,14 +2,14 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<t:pageTemplate pageTitle="Profile">
+<t:profileTemplate pageTitle="Profile">
     <div class="container">
         <div class="row">
             <!-- Sidebar for Activities -->
             <div class="col-md-3">
                 <h4>Add New Custom Activity</h4>
                 <p>By filling in the form below, you can add a new custom activity that you define and that you will be able to use across the whole app.</p>
-                <form action="${pageContext.request.contextPath}/AddCustomActivity" method="post" class="sticky-top">
+                <form action="${pageContext.request.contextPath}/AddCustomActivity" method="post">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control" id="name" name="name" required>
@@ -29,8 +29,8 @@
                                 <div class="card-body">
                                     <h5 class="card-title">${customActivity.name}</h5>
                                     <p class="card-text">${customActivity.description}</p>
-                                    <a href="${pageContext.request.contextPath}/EditCustomActivity?activityId=${customActivity.id}" class="btn btn-primary">Edit</a>
-                                    <a href="${pageContext.request.contextPath}/DeleteCustomActivity?activityId=${customActivity.id}" class="btn btn-danger">Delete</a>
+                                    <a href="${pageContext.request.contextPath}/EditCustomActivity?activityId=${customActivity.id}" class="btn btn-primary btn-sm">Edit</a>
+                                    <a href="${pageContext.request.contextPath}/DeleteCustomActivity?activityId=${customActivity.id}" class="btn btn-danger btn-sm">Delete</a>
                                 </div>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
             </div>
 
             <!-- Main Content -->
-            <div class="col-md-6 main-content">
+            <div class="col-md-6 main-content bg-light">
                 <div class="text-center">
                     <h3>Hello, ${user.firstName}</h3>
                 </div>
@@ -115,9 +115,11 @@
                                     <p class="card-text">${post.datePosted}</p>
                                     <p class="card-text">Reactions: ${post.reactionsCount}</p>
                                     <p class="card-text">Comments: ${post.commentsCount}</p>
-                                    <a href="${pageContext.request.contextPath}/ViewPost?postId=${post.id}" class="btn btn-primary">View Post</a>
-                                    <a href="${pageContext.request.contextPath}/EditPost?postId=${post.id}" class="btn btn-primary">Edit</a>
-                                    <a href="${pageContext.request.contextPath}/DeletePost?postId=${post.id}" class="btn btn-danger">Delete</a>
+                                    <div class="d-flex justify-content-between">
+                                        <a href="${pageContext.request.contextPath}/ViewPost?postId=${post.id}" class="btn btn-primary btn-sm">View</a>
+                                        <a href="${pageContext.request.contextPath}/EditPost?postId=${post.id}" class="btn btn-primary btn-sm">Edit</a>
+                                        <a href="${pageContext.request.contextPath}/DeletePost?postId=${post.id}" class="btn btn-danger btn-sm">Delete</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -149,4 +151,4 @@
             </div>
         </div>
     </div>
-</t:pageTemplate>
+</t:profileTemplate>
