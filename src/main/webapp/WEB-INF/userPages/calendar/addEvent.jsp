@@ -3,6 +3,13 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:pageTemplate pageTitle="Add an event">
+
+    <c:if test="${not empty error}">
+        <div style="color: red;">
+                ${error}
+        </div>
+    </c:if>
+
     <h3>You're adding an event to your ${calendar.name} calendar</h3>
 
     <!-- Form for adding an event -->

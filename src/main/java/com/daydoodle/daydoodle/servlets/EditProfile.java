@@ -27,23 +27,17 @@ public class EditProfile extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         log.info("\n Entered EditProfile.doGet \n");
-
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
-
         UserDetailsDto thisUser = userDetailsBean.getUserDetailsByUsername(user.getUsername(), userDetailsBean.findAllUserDetails());
-
         req.setAttribute("user", thisUser);
-
         log.info("\n Exited EditProfile.doGet \n");
-
         req.getRequestDispatcher("/WEB-INF/userPages/editProfile.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         log.info("\n Entered EditProfile.doPost \n");
-
         String username = req.getParameter("username");
         String firstName = req.getParameter("firstname");
         String lastName = req.getParameter("lastname");
@@ -54,13 +48,14 @@ public class EditProfile extends HttpServlet {
         String pronouns = req.getParameter("pronouns");
         String description = req.getParameter("description");
         byte[] profilePicture = null;
-        String imageFormat = req.getParameter("imageFormat"); // Retrieve image format from request parameter
+        String imageFormat = req.getParameter("imageFormat");
 
         Part profilePicturePart = req.getPart("profilePicture");
         if (profilePicturePart != null && profilePicturePart.getSize() > 0) {
             profilePicture = profilePicturePart.getInputStream().readAllBytes();
         }
 
+        //Update the user details
         if (username != null) {
             if (firstName != null) {
                 userDetailsBean.updateFirstName(username, firstName);

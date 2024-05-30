@@ -72,32 +72,7 @@ public class UserBean {
         return foundUser;
 
     }
-//
-//    public void updateUser(UserDto newUser){
-//        log.info("\n** Entered updateUser method with the new values for username: "+ newUser.getUsername() +" email: "+ newUser.getEmail() + " password: "+ newUser.getPassword() +"**\n");
-//
-//        User user=entityManager.find(User.class, newUser.getUsername());
-//        user.setUsername(newUser.getUsername());
-//        user.setEmail(newUser.getEmail());
-//        user.setPassword(newUser.getPassword());
-//
-//        log.info("\n** Exited updateUser method. **\n");
-//    }
-//
-//    public void deleteUser(String username){
-//
-//        log.info("\n** Entered deleteUser method with the username "+username+" **\n");
-//
-//        User user=entityManager.find(User.class,username);
-//        entityManager.remove(user);
-//        UserDetails userDetails=entityManager.find(UserDetails.class,username);
-//        entityManager.remove(userDetails);
-//
-//        log.info("\n** Exited deleteUser method **\n");
-//
-//    }
-//
-//
+
     /**
      * Finds all the usernames already existing in the table.
      * @return A list of all the usernames of the users already registered.
@@ -182,5 +157,6 @@ public class UserBean {
             throw new IllegalArgumentException("User not found.");
         }
     }
+
 
 }

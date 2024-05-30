@@ -15,8 +15,10 @@ public class Calendar {
     @Basic
     @Lob
     private String description;
+
     @OneToMany(mappedBy = "calendar", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CalendarEvent> events;
+
     @ManyToMany(mappedBy = "calendars")
     private List<User> users;
     String createdBy;

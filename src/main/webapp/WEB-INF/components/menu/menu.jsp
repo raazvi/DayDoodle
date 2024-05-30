@@ -27,7 +27,6 @@
                         <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/ViewFriends"> Friends </a>
                     </li>
                 </ul>
-                <!-- Centered logo with link to home -->
                 <c:choose>
                     <c:when test="${empty sessionScope.user}">
                         <a class="navbar-brand navbar-logo mx-auto" href="${pageContext.request.contextPath}">DayDoodle</a>
