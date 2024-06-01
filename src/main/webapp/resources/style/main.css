@@ -183,3 +183,28 @@ body {
         max-width: 200px; /* Adjust max width for smaller screens */
     }
 }
+
+/* New CSS classes for welcome animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.welcome-message {
+    animation: fadeIn 2s ease-in-out;
+    font-size: 2.5em;
+    color: #ff4500; /* OrangeRed color */
+    text-align: center;
+    margin: 20px 0;
+    font-family: "Lucida", cursive;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

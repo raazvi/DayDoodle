@@ -2,7 +2,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
 <t:generalTemplate pageTitle="Home">
-  <h1>Welcome to DayDoodle!</h1>
+  <h1 class="welcome-message">Welcome to DayDoodle!</h1>
   <p>
     My Time Management App is a social media platform designed to help you organize your schedule efficiently.
     With our app, you can connect with friends and create shared calendars, allowing you to coordinate activities and make plans together effortlessly.

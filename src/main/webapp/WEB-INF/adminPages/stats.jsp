@@ -10,61 +10,60 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<t:pageTemplate pageTitle="Admin Stats">
+<t:adminTemplate pageTitle="Admin Stats">
     <div class="container mt-4">
-        <h3>Stats page - Admin View</h3>
+        <h2>Stats Page</h2>
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 center-text">
                 <h4>Total Users</h4>
                 <p>${totalUsers}</p>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <h4>Age Distribution</h4>
-                <canvas id="ageGroupsChart"></canvas>
-                <table class="table table-striped mt-3">
-                    <thead>
+        <div class="chart-container">
+            <h4 class="chart-heading">Age Distribution</h4>
+            <canvas id="ageGroupsChart"></canvas>
+            <table class="table table-striped mt-3">
+                <thead>
+                <tr>
+                    <th>Age Group</th>
+                    <th>Count</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="entry" items="${ageGroups}">
                     <tr>
-                        <th>Age Group</th>
-                        <th>Count</th>
+                        <td>${entry.key}</td>
+                        <td>${entry.value}</td>
                     </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach var="entry" items="${ageGroups}">
-                        <tr>
-                            <td>${entry.key}</td>
-                            <td>${entry.value}</td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-6">
-                <h4>Account Creation Trends</h4>
-                <canvas id="accountCreationTrendsChart"></canvas>
-                <table class="table table-striped mt-3">
-                    <thead>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="chart-container">
+            <h4 class="chart-heading">Account Creation Trends</h4>
+            <canvas id="accountCreationTrendsChart"></canvas>
+            <table class="table table-striped mt-3">
+                <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Account Creations</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="entry" items="${accountCreationTrends}">
                     <tr>
-                        <th>Month</th>
-                        <th>Account Creations</th>
+                        <td>${entry.key}</td>
+                        <td>${entry.value}</td>
                     </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach var="entry" items="${accountCreationTrends}">
-                        <tr>
-                            <td>${entry.key}</td>
-                            <td>${entry.value}</td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </div>
+                </c:forEach>
+                </tbody>
+            </table>
         </div>
     </div>
-</t:pageTemplate>
+</t:adminTemplate>
 
 <script>
     // Age Groups Chart

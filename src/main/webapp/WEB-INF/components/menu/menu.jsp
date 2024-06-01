@@ -15,7 +15,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav flex-fill">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Feed"> Feed </a>
+                        <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Feed"> DayDoodle </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/Diary"> Diary </a>
@@ -27,14 +27,6 @@
                         <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/ViewFriends"> Friends </a>
                     </li>
                 </ul>
-                <c:choose>
-                    <c:when test="${empty sessionScope.user}">
-                        <a class="navbar-brand navbar-logo mx-auto" href="${pageContext.request.contextPath}">DayDoodle</a>
-                    </c:when>
-                    <c:otherwise>
-                        <a class="navbar-brand navbar-logo mx-auto" href="${pageContext.request.contextPath}/Feed">DayDoodle</a>
-                    </c:otherwise>
-                </c:choose>
                 <!-- Right side menu items -->
                 <ul class="navbar-nav flex-fill justify-content-end">
                     <li class="nav-item">

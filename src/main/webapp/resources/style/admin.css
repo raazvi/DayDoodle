@@ -1,0 +1,81 @@
+/* General Styles */
+.container {
+    background-color: #ffffff; /* White background for contrast */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    padding: 20px;
+}
+
+h2, h3, h4 {
+    color: #0056ba; /* Consistent dark blue for headings */
+    font-family: "Lucida", cursive;
+    text-align: center; /* Center text for all headings */
+}
+
+p {
+    font-size: 1.1em;
+    color: #333; /* Dark gray text color */
+}
+
+/* Center the "Total Users" section */
+.center-text {
+    text-align: center;
+}
+
+/* Chart Heading Styles */
+.chart-heading {
+    border-bottom: 2px solid #0056ba; /* Border under the chart heading */
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Table Styles */
+.table {
+    background-color: #f9f9f9; /* Light gray for table background */
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    overflow: hidden;
+}
+
+.table thead th {
+    background-color: #0056ba; /* Dark blue header */
+    color: #ffffff; /* White text for header */
+    font-weight: bold;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #e2f7ff; /* Light pastel blue for striped rows */
+}
+
+/* Chart Styles */
+canvas {
+    background-color: #ffffff; /* White background for charts */
+    border-radius: 5px; /* Rounded corners */
+    margin-top: 20px;
+    max-width: 100%; /* Ensure charts are responsive */
+}
+
+.chart-container {
+    width: 50%; /* Half width of the container */
+    margin: 0 auto 30px auto; /* Centered and spaced between containers */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .chart-container {
+        width: 100%; /* Full width for smaller screens */
+    }
+
+    h3, h4 {
+        font-size: 1.5em; /* Adjust font size for smaller screens */
+    }
+
+    .table thead th, .table tbody td {
+        font-size: 0.9em; /* Adjust table font size */
+    }
+}
