@@ -2,7 +2,7 @@ body {
     background-color: #f0f8ff; /* Light pastel blue */
     margin: 0;
     font-family: Arial, sans-serif;
-    padding-top: 70px; /* Add padding to prevent content overlap with the navbar */
+    padding-top: 50px; /* Adjusted padding to reduce gap */
 }
 
 .navbar {
@@ -91,7 +91,7 @@ body {
 
 /* Additional margin for the content */
 .content {
-    margin-top: 70px; /* Adjust as needed */
+    margin-top: 50px; /* Adjusted margin to reduce gap */
 }
 
 /* ==================================== */
@@ -119,7 +119,8 @@ body {
 }
 
 .login-register input[type="text"],
-.login-register input[type="password"] {
+.login-register input[type="password"],
+.login-register input[type="email"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;

@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+
 <t:feedTemplate pageTitle="News Feed">
     <div class="container">
         <div class="row justify-content-center">
@@ -40,7 +42,13 @@
                                     <p class="card-text">Date Posted: ${post.datePosted}</p>
 
                                     <!-- Display caption -->
-                                    <p class="card-text">${post.caption}</p>
+                                    <p class="card-text">
+                                        <span class="caption-truncated" id="truncated-${post.id}">${fn:substring(post.caption, 0, 100)}</span>
+                                        <c:if test="${fn:length(post.caption) > 100}">
+                                            <span class="caption-full" id="full-${post.id}">${post.caption}</span>
+                                            <span class="caption-toggle" onclick="toggleCaption('${post.id}')">[...]</span>
+                                        </c:if>
+                                    </p>
 
                                     <!-- Display post picture -->
                                     <c:if test="${not empty post.picture}">
@@ -92,3 +100,21 @@
         </c:choose>
     </div>
 </t:feedTemplate>
+
+<script>
+    function toggleCaption(postId) {
+        var truncatedCaption = document.getElementById('truncated-' + postId);
+        var fullCaption = document.getElementById('full-' + postId);
+        var toggleButton = truncatedCaption.nextElementSibling;
+
+        if (truncatedCaption.style.display === 'none') {
+            truncatedCaption.style.display = 'inline';
+            fullCaption.style.display = 'none';
+            toggleButton.innerHTML = '[...]';
+        } else {
+            truncatedCaption.style.display = 'none';
+            fullCaption.style.display = 'inline';
+            toggleButton.innerHTML = '[show less]';
+        }
+    }
+</script>

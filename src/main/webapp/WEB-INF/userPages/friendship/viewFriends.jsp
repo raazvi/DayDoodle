@@ -2,7 +2,7 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<t:pageTemplate pageTitle="Friends">
+<t:friendsTemplate pageTitle="Friends">
     <div class="page-content">
         <c:if test="${not empty friendRequestsReceived}">
             <h2>Friend Requests:</h2>
@@ -80,14 +80,14 @@
                                 <td>
                                     <form action="${pageContext.request.contextPath}/UserProfile" method="GET">
                                         <input type="hidden" name="username" value="${friend.friend.username}">
-                                        <button type="submit">View Profile</button>
+                                        <button class="styled-button" type="submit">View Profile</button>
                                     </form>
                                 </td>
                                 <td>
                                     <form action="${pageContext.request.contextPath}/DeleteFriend" method="GET">
                                         <input type="hidden" name="username" value="${friend.friend.username}">
                                         <input type="hidden" name="friendshipId" value="${friend.id}">
-                                        <button type="submit">Delete Friend</button>
+                                        <button class="styled-button" type="submit">Delete Friend</button>
                                     </form>
                                 </td>
                             </tr>
@@ -133,4 +133,4 @@
             }
         }
     </script>
-</t:pageTemplate>
+</t:friendsTemplate>

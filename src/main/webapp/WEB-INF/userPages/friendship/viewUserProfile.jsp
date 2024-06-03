@@ -56,11 +56,11 @@
             </div>
         </div>
 
-        <c:if test="${not friends}">
-            <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    <div class="card">
-                        <div class="card-body text-center">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <c:if test="${not friends}">
                             <c:choose>
                                 <c:when test="${friendshipRequestPending}">
                                     <button class="btn btn-secondary" disabled>Friend Request Pending</button>
@@ -75,10 +75,10 @@
                                     </form>
                                 </c:otherwise>
                             </c:choose>
-                        </div>
+                        </c:if>
                     </div>
                 </div>
             </div>
-        </c:if>
+        </div>
     </div>
 </t:profileTemplate>

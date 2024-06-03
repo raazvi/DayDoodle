@@ -34,14 +34,12 @@ body {
 
 /* The rest of your existing CSS styles */
 .card {
-    background-color: #ffffff; /* White background for cards */
-    border-radius: 15px; /* Rounded corners */
-    padding: 20px; /* Padding inside the card */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
-    margin-bottom: 20px; /* Space between cards */
-    transition: transform 0.3s ease; /* Smooth transition for hover effect */
-    height: 450px; /* Fixed height for all cards */
-    overflow: hidden; /* Ensure content overflow is hidden */
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -78,8 +76,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    height: 100%; /* Ensure the card body fills the height */
-    justify-content: space-between; /* Space between elements */
+    justify-content: space-between;
+    height: 100%;
 }
 
 .reaction-buttons {
@@ -157,7 +155,6 @@ body {
 @media (max-width: 768px) {
     .card {
         padding: 10px;
-        height: auto; /* Auto height for smaller screens */
     }
 
     .card-img-top {
@@ -180,8 +177,8 @@ body {
 }
 
 .post-image {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
     border-radius: 10px;
     margin-top: 10px;
@@ -274,11 +271,30 @@ body {
     font-weight: bold;
 }
 
-.comment-form-container textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    resize: vertical;
+.caption-truncated, .caption-full {
+    white-space: normal; /* Allow text to wrap */
+    word-wrap: break-word; /* Break long words if necessary */
+}
+
+.caption-truncated {
+    display: inline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 3.6em; /* Limit height to 3 lines */
+    line-height: 1.2em; /* Line height for calculation */
+}
+
+.caption-full {
+    display: none;
+}
+
+.caption-toggle {
+    color: blue;
+    cursor: pointer;
+}
+
+h3{
+    color: #0056ba;
+    font-family: "Lucida", cursive;
+    text-align: center;
 }
