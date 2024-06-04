@@ -14,7 +14,7 @@
             <label for="moodCategory">How did you feel:</label>
             <div class="mood-select">
                 <select id="moodCategory" name="moodCategory" onchange="populateMoodValues(this)" required>
-                    <option value="" selected disabled>Select a Mood Category</option>
+                    <option value="" selected disabled>Select a mood...</option>
                     <option value="Happy">Happy</option>
                     <option value="Sad">Sad</option>
                     <option value="Disgusted">Disgusted</option>
@@ -28,7 +28,7 @@
 
             <label for="moodValue">Be more specific:</label>
             <select id="moodValue" name="moodValue" required>
-                <option value="" selected disabled>Select a Mood Value</option>
+                <option value="" selected disabled>Your mood in a more specific way...</option>
             </select><br>
 
             <label for="moreDetails">Fill in with more details about your day:</label><br>
@@ -56,7 +56,6 @@
             "Bad": ["Bored", "Busy", "Stressed", "Tired"],
             "Surprised": ["Startled", "Confused", "Amazed", "Excited"]
         };
-
         if (moodCategory in moodValues) {
             moodValues[moodCategory].forEach(function(value) {
                 var option = document.createElement("option");
@@ -64,7 +63,6 @@
                 option.text = value;
                 moodValueSelect.add(option);
             });
-
             moodBubble.textContent = moodCategory;
             moodBubble.style.display = 'inline-block';
         }

@@ -21,7 +21,7 @@
         </div>
     </div>
     <h3>See what you have missed...</h3>
-    <div class="container">
+    <div class="container posts-scrollable-container"> <!-- Added posts-scrollable-container class -->
         <c:choose>
             <c:when test="${not empty posts}">
                 <div class="row">

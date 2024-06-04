@@ -15,6 +15,14 @@
                 </c:if>
             </div>
         </div>
+
+        <div class="new-entry-section">
+            <p>Don't hesitate to start writing! Click the button below to add a new entry to your diary.</p>
+            <form action="${pageContext.request.contextPath}/AddDiaryPage" method="GET">
+                <button type="submit" class="submit-btn">Write in your diary</button>
+            </form>
+        </div>
+
         <div class="diary-pages-section">
             <c:if test="${empty pages}">
                 <p class="no-pages">No pages yet.</p>
@@ -37,12 +45,6 @@
                     </tbody>
                 </table>
             </c:if>
-        </div>
-        <div class="new-entry-section">
-            <p>Don't hesitate to start writing! Click the button below to add a new entry to your diary.</p>
-            <form action="${pageContext.request.contextPath}/AddDiaryPage" method="GET">
-                <button type="submit" class="submit-btn">Write in your diary</button>
-            </form>
         </div>
     </div>
     <script>

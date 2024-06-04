@@ -33,3 +33,4 @@ public class DeleteCalendar extends HttpServlet {
         resp.sendRedirect(req.getContextPath()+"/ViewCalendars");
     }
 }
+

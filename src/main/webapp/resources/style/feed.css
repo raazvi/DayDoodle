@@ -6,14 +6,16 @@ body {
     display: flex;
     justify-content: center; /* Center the container horizontally */
     align-items: center; /* Center the container vertically */
+    overflow: hidden; /* Hide any overflow from the body */
 }
 
 .outer-container {
     display: flex;
     justify-content: center; /* Center the inner container horizontally */
     align-items: center; /* Center the inner container vertically */
-    height: 100%; /* Full height */
-    width: 100%; /* Full width */
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    overflow: hidden; /* Hide overflow from outer container */
 }
 
 .inner-container {
@@ -23,16 +25,22 @@ body {
     background-color: #ffffff; /* White background for container */
     border-radius: 15px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    overflow: auto; /* Allow scrolling if content overflows */
+    max-height: 100vh; /* Ensure it doesn't exceed viewport height */
 }
 
 .post-container {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center contents inside the container */
-    align-items: center; /* Center contents inside the container */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+    box-sizing: border-box;
+    max-width: 100%;
+    width: 100%;
 }
 
-/* The rest of your existing CSS styles */
 .card {
     background-color: #ffffff;
     border-radius: 15px;
@@ -184,6 +192,14 @@ body {
     margin-top: 10px;
 }
 
+.big-post-image {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
 .reactions-container {
     margin-top: 20px;
     text-align: left;
@@ -293,8 +309,32 @@ body {
     cursor: pointer;
 }
 
-h3{
+h3 {
     color: #0056ba;
     font-family: "Lucida", cursive;
     text-align: center;
+}
+
+.post-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px; /* Adjust the margin as needed */
+}
+
+.post-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px; /* Adjust the margin as needed */
+    padding-top: 20px;
+    margin-top: 50px !important;
+}
+
+.posts-scrollable-container {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 15px;
 }

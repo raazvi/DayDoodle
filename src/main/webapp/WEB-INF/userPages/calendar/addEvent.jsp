@@ -69,7 +69,7 @@
             <table>
                 <tr>
                     <td><label for="newActivityName">Name:</label></td>
-                    <td><input type="text" class="form-control" id="newActivityName" name="name" placeholder="Enter activity name"></td>
+                    <td><input type="text" class="form-control" id="newActivityName" name="name" placeholder="Enter activity name" required></td>
                 </tr>
                 <tr>
                     <td><label for="newActivityDescription">Description:</label></td>

@@ -58,12 +58,10 @@ public class AddPost extends HttpServlet {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         String username = user.getUsername();
-
         String caption = req.getParameter("caption");
         String tempActivity = req.getParameter("activity");
         Long activityId, customActivityId;
         char activityType;
-
         activityType = tempActivity.charAt(0);
 
         log.info("\n Detecting activity type... \n");

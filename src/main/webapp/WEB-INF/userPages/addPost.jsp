@@ -10,13 +10,13 @@
             <div class="row">
                 <div class="col-md-12 mb-3">
                     <label for="caption">Caption</label>
-                    <input type="text" class="form-control" id="caption" name="caption" placeholder="Tell us about your day..." value="">
+                    <input type="text" class="form-control" id="caption" name="caption" placeholder="Tell us about your day..." value="" required>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 mb-3">
                     <label for="activity">Activity:</label>
-                    <select class="form-control" id="activity" name="activity">
+                    <select class="form-control" id="activity" name="activity" required>
                         <option value="" selected disabled>Choose an activity</option>
                         <c:forEach var="activity" items="${activities}">
                             <option value="a${activity.id}">${activity.name}</option>
@@ -47,7 +47,7 @@
             <div class="row">
                 <div class="col-md-12 mb-3">
                     <label for="newActivityName">Name</label>
-                    <input type="text" class="form-control" id="newActivityName" name="name" placeholder="Enter activity name">
+                    <input type="text" class="form-control" id="newActivityName" name="name" placeholder="Enter activity name" required>
                 </div>
             </div>
             <div class="row">

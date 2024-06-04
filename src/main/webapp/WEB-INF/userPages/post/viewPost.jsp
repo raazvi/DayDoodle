@@ -18,7 +18,7 @@
                 <div class="post-content">
                     <p>${post.caption}</p>
                     <c:if test="${not empty post.picture}">
-                        <img class="post-image" src="data:image/${post.picture.imageFormat};base64,${post.picture.base64ImageData}" alt="Post picture">
+                        <img class="big-post-image" src="data:image/${post.picture.imageFormat};base64,${post.picture.base64ImageData}" alt="Post picture">
                     </c:if>
                 </div>
 

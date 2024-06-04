@@ -5,7 +5,6 @@
 <t:pageTemplate pageTitle="Manage Activities">
     <h3>Add a new activity, that will be available to all the users.</h3>
 
-    <h4>Add New Activity</h4>
     <form action="${pageContext.request.contextPath}/ManageActivities" method="post">
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>

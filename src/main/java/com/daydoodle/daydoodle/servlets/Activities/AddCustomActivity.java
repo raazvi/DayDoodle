@@ -38,7 +38,6 @@ public class AddCustomActivity extends HttpServlet {
             calendarIdLong=Long.parseLong(calendarId);
         }
 
-
         customActivityBean.addCustomActivity(user.getUsername(), name, description);
 
         if(Objects.equals(page, "addPost")){
