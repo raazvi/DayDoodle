@@ -26,7 +26,7 @@
             <c:when test="${not empty posts}">
                 <div class="row">
                     <c:forEach var="post" items="${posts}">
-                        <div class="col-md-4 d-flex align-items-stretch">
+                        <div class="col-md-12 col-lg-4 align-items-stretch">
                             <div class="card mb-4 box-shadow">
                                 <div class="card-body">
                                     <!-- Display profile picture and user name -->
